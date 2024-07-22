@@ -5,7 +5,7 @@ import Footer from "./layout/footer/Footer";
 function App() {
   return (
     <>
-      <Container fluid className="d-flex">
+      <Container>
         <main>
           <Routing />
         </main>
