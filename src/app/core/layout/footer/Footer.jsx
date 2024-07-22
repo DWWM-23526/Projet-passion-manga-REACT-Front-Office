@@ -1,4 +1,10 @@
 import { Container, Image } from "react-bootstrap";
+import  facebookSvg  from "../../../../assets/svg/facebook.svg";
+import instagramSvg from "../../../../assets/svg/instagram.svg";
+import githubSvg from "../../../../assets/svg/github.svg";
+import twitterSvg from "../../../../assets/svg/twitter.svg";
+
+
 
 const Footer = () => {
   return (
@@ -6,16 +12,16 @@ const Footer = () => {
       <footer className="text-center text-white bg-primary">
         <Container className="d-flex justify-content-center py-4">
           <a href="#" className="mx-2">
-            <Image src="src\assets\img\facebook.svg" />
+            <Image src={facebookSvg} />
           </a>
           <a href="#" className="mx-2">
-            <Image src="src\assets\img\instagram.svg" />
+            <Image src={instagramSvg} />
           </a>
           <a href="#" className="mx-2">
-            <Image src="src\assets\img\twitter.svg" />
+            <Image src={githubSvg} />
           </a>
           <a href="#" className="mx-2">
-            <Image src="src\assets\img\github.svg" />
+            <Image src={twitterSvg} />
           </a>
         </Container>
 
