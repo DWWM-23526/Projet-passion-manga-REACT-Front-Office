@@ -6,6 +6,7 @@ const Header = () => {
             <header className="text-center bg-primary">
                 <Container>
                     <div>Cc</div>
+                    <Image/>
                 </Container>
             </header>
         </>
