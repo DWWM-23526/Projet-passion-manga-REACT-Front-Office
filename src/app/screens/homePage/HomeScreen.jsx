@@ -1,8 +1,10 @@
+import Header from "../../core/layout/header/header";
+
 const HomeScreen = () => {
   return (
     <>
     <div>
-      Coucou Home
+      <Header></Header>
     </div>
     </>
   )
