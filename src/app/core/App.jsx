@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap";
 import Routing from "./Routes";
 import NavbarComponent from "./layout/navbar/NavbarComponent";
+import Footer from "./layout/footer/Footer";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
           <Routing />
         </main>
       </Container>
+      <Footer />
     </>
   );
 }

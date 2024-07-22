@@ -25,7 +25,7 @@ const Footer = () => {
           </a>
         </Container>
 
-        <div className="text-center text-white py-2 bg-tertiary">
+        <div className="text-center text-white py-2 bg-dark">
           © 2024 Copyright:
           <p>Passion-mangas.fr</p>
         </div>
