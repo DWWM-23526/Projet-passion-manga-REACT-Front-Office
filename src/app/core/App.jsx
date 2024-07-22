@@ -1,11 +1,12 @@
 import { Container } from "react-bootstrap";
-import Routing from "../screens/Routes";
-
+import Routing from "./Routes";
+import NavbarComponent from "./layout/navbar/NavbarComponent";
 
 function App() {
   return (
     <>
-      <Container fluid className="d-flex">
+      <NavbarComponent />
+      <Container>
         <main>
           <Routing />
         </main>
