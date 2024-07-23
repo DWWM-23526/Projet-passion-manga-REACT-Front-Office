@@ -4,7 +4,7 @@ import baner from "./../../../../assets/img/baner.jpg"
 import "./header.scss"
 
 const Header = (props) => {
-    let isConnected =  true;
+    let isConnected =  false;
 
     let connectedPart;
 
