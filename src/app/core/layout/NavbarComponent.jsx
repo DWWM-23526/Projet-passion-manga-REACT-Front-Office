@@ -18,7 +18,7 @@ const NavbarComponent = () => {
   } else {
     navPart = (
       <Nav>
-        <NavbarIcone name="Connexion" path="/profil/login" />
+        <NavbarIcone name="Connexion" path="/profile/login" />
       </Nav>
     );
   }
