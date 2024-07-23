@@ -11,14 +11,14 @@ const NavbarComponent = () => {
   if (isConnected) {
     navPart = (
       <Nav>
-        <NavbarIcone name="Profile" path={`/profile/${profileID}`} />
+        <NavbarIcone name="Profile" path={`/profil/${profileID}`} />
         <NavbarIcone name="Deconnexion" path="/logout" />
       </Nav>
     );
   } else {
     navPart = (
       <Nav>
-        <NavbarIcone name="Connexion" path="/profile/login" />
+        <NavbarIcone name="Connexion" path="/profil/login" />
       </Nav>
     );
   }
