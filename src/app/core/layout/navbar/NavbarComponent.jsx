@@ -1,10 +1,11 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
+import NavbarIcone from "../navbarIcon/NavbarIcon";
+import { Link } from "react-router-dom";
 
 import "./navbarComponent.scss";
-import NavbarIcone from "../navbarIcon/NavbarIcon";
 
 const NavbarComponent = () => {
-  let isConnected = true;
+  let isConnected = false;
   let profileID = 5;
   let navPart;
 
@@ -18,7 +19,7 @@ const NavbarComponent = () => {
   } else {
     navPart = (
       <Nav>
-        <NavbarIcone name="Connexion" path="/profile/login" />
+        <NavbarIcone name="Connexion" path="/profil/login" />
       </Nav>
     );
   }
@@ -27,7 +28,11 @@ const NavbarComponent = () => {
     <>
       <Navbar>
         <Container fluid className="d-flex">
-          <NavbarIcone name="PASSION MANGAS" path="/" />
+          <Nav>
+            <Link className="nav-Link fs-2 fw-bold mx-2 pt-1" to="/">
+              PASSION MANGAS
+            </Link>
+          </Nav>
           <Nav className="me-auto">
             <NavbarIcone name="Mangas" path="/manga" />
             <NavbarIcone name="Mangakas" path="/mangaka" />
