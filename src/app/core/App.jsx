@@ -7,14 +7,16 @@ import Header from "./layout/header/header";
 function App() {
   return (
     <>
-      <NavbarComponent />
-      <Header/>
-      <Container>
-        <main>
-          <Routing />
-        </main>
-      </Container>
-      <Footer />
+      <div className="d-flex flex-column min-vh-100">
+        <NavbarComponent />
+        <Header/>
+      <Container className="flex-fill">
+          <main>
+            <Routing />
+          </main>
+        </Container>
+        <Footer />
+      </div>
     </>
   );
 }

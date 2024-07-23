@@ -9,18 +9,28 @@ import MangakaScreen from "../screens/mangaka/MangakaScreen";
 import TagsScreen from "../screens/tags/TagsScreen";
 import FavoriteScreen from "../screens/favorites/FavoriteScreen";
 import PageNotFound from "./screens/PageNotFound";
+import ShowMangaScreen from "../screens/manga/ShowMangaScreen";
 
 const Routing = () => {
   return (
     <>
       <Routes>
         <Route path="/" element={<HomeScreen />} />
-        <Route path="/manga" element={<MangaScreen />} />
-        <Route path="/mangaka" element={<MangakaScreen />} />
+
+        <Route path="/manga">
+          <Route path="" element={<MangaScreen />} />
+          <Route path=":id" element={<ShowMangaScreen />} />
+        </Route>
+
+        <Route path="/mangaka">
+          <Route path="" element={<MangakaScreen />} />
+          <Route path=":id" element={<MangakaScreen />} />
+        </Route>
+
         <Route path="/tags" element={<TagsScreen />} />
         <Route path="/favorites" element={<FavoriteScreen />} />
 
-        <Route path="/profile">
+        <Route path="/profil">
           <Route path="login" element={<LoginScreen />} />
           <Route path="logout" element={<LoginScreen />} />
           <Route path="register" element={<RegisterScreen />} />

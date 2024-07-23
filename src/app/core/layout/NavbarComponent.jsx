@@ -3,7 +3,6 @@ import NavbarIcone from "./navbarIcon/NavbarIcon";
 import { Link } from "react-router-dom";
 
 
-
 const NavbarComponent = () => {
   let isConnected = false;
   let profileID = 5;
@@ -12,14 +11,14 @@ const NavbarComponent = () => {
   if (isConnected) {
     navPart = (
       <Nav>
-        <NavbarIcone name="Profile" path={`/profile/${profileID}`} />
+        <NavbarIcone name="Profile" path={`/profil/${profileID}`} />
         <NavbarIcone name="Deconnexion" path="/logout" />
       </Nav>
     );
   } else {
     navPart = (
       <Nav>
-        <NavbarIcone name="Connexion" path="/profile/login" />
+        <NavbarIcone name="Connexion" path="/profil/login" />
       </Nav>
     );
   }

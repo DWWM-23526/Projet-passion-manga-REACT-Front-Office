@@ -1,4 +1,4 @@
-import imgTest from "../../../../assets/img/naruto1.jpg"
+import imgTest from "./../../../../assets/img/naruto1.jpg"
 const cardData = [
   {
     id:1,
@@ -14,7 +14,17 @@ const cardData = [
     id:3,
     imgSrc: imgTest,
     title: "Beh"
-  }
+  },
+  {
+    id:4,
+    imgSrc: imgTest,
+    title: "Beh"
+  },
+  {
+    id:5,
+    imgSrc: imgTest,
+    title: "Beh"
+  },
 
 ];
 
