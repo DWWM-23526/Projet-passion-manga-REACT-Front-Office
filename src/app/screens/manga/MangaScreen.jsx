@@ -2,7 +2,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import Cards from "../../shared/components/Card/Card";
 
 import { cardData } from "./../../shared/components/Card/cardData";
-import Header from "./../../core/layout/header/Header"
+import Header from "../../core/layout/header/Header";
 
 const MangaScreen = () => {
   let mangas = cardData;

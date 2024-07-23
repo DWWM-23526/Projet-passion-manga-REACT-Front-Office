@@ -1,11 +1,14 @@
 import { Col, Container, Row } from "react-bootstrap";
+
 import { Link } from "react-router-dom";
 import Header from "./../../core/layout/header/Header"
+
 
 
 const HomeScreen = () => {
   return (
     <>
+
     <div>
     <Header title="BIENVENUE SUR MANGA PASSION" />
       <Container>
@@ -48,7 +51,7 @@ const HomeScreen = () => {
       </Container>
     </div>
     </>
-  )
-}
+  );
+};
 
 export default HomeScreen;
