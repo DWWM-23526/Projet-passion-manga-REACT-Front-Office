@@ -1,8 +1,15 @@
+import { Container } from "react-bootstrap";
+import Header from "./../../core/layout/header/Header";
+
 const TagsScreen = () => {
   return (
     <>
     <div>
-      Coucou Tags
+      <Header title = "Types de manga"/>
+      <Container>
+        Coucou Tags
+      </Container>
+      
     </div>
     </>
   )

@@ -1,4 +1,3 @@
-import { Container } from "react-bootstrap";
 import Routing from "./Routes";
 import NavbarComponent from "./layout/NavbarComponent";
 import Footer from "./layout/Footer";
@@ -8,11 +7,11 @@ function App() {
     <>
       <div className="d-flex flex-column min-vh-100">
         <NavbarComponent />
-        <Container className="flex-fill">
+      <div className="flex-fill">
           <main>
             <Routing />
           </main>
-        </Container>
+        </div>
         <Footer />
       </div>
     </>
