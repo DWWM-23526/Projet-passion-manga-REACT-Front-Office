@@ -2,7 +2,8 @@ const HomeScreen = () => {
   return (
     <>
     <div>
-      Coucou Home
+      Coucou from home
+     
     </div>
     </>
   )
