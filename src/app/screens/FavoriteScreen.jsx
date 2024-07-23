@@ -1,6 +1,8 @@
 import { Col, Container, Row } from "react-bootstrap";
-import Cards from "../shared/components/Card/Card";
 import { cardData } from "../../../data/cardData";
+
+import Header from "../core/layout/header/Header";
+import Cards from "../shared/components/Card/Card";
 
 const FavoriteScreen = () => {
   let mangas = cardData;
@@ -13,6 +15,7 @@ const FavoriteScreen = () => {
 
   return (
     <>
+    <Header title="FAVORIES" />
       <Container className="d-flex text-center">
         <Row className="g-3 mt-3">{mangaList}</Row>
       </Container>

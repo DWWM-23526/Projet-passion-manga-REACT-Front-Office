@@ -15,7 +15,7 @@ const MangaScreen = () => {
 
   return (
     <>
-      <Header title="MANGAAAAAAAA (truc nul pour Antoine)" />
+      <Header title="MANGA" />
       <Container className="d-flex text-center">
         <Row className="g-3 mt-3">{mangaList}</Row>
       </Container>

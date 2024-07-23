@@ -5,7 +5,7 @@ const TagsScreen = () => {
   return (
     <>
       <div>
-        <Header title="Types de manga" />
+        <Header title="GENRES" />
         <Container>Coucou Tags</Container>
       </div>
     </>

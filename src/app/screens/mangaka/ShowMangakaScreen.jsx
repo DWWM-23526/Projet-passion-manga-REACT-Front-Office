@@ -1,9 +1,12 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
 
 import Img from "./../../../assets/img/hirohiko_araki.jpg";
+import Header from "../../core/layout/header/Header";
 
 const ShowMangakaScreen = () => {
   return (
+    <>
+    <Header title="MANGAKA" />
     <Container className="my-4">
       <Row>
         <Col xs={12} md={6} className="d-flex justify-content-center align-items-center">
@@ -54,6 +57,8 @@ const ShowMangakaScreen = () => {
         </Col>
       </Row>
     </Container>
+    </>
+    
   );
 };
 
