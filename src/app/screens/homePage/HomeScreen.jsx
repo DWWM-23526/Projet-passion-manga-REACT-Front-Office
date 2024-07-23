@@ -6,6 +6,8 @@ const HomeScreen = () => {
     <>
     <div>
       <Header/>
+      Coucou from home
+     
     </div>
     </>
   )
