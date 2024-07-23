@@ -4,11 +4,18 @@ import Cards from "../../shared/components/Card/Card";
 import { cardData } from "./../../shared/components/Card/cardData";
 import Header from "../../core/layout/header/Header";
 import SearchBar from "../../shared/components/Searchbar/SearchBar";
+import { useState } from "react";
 
 const MangaScreen = () => {
-  let mangas = cardData;
+  const [filteredMangas, setFilteredManags] = useState(cardData);
 
-  const mangaList = mangas.map((manga) => (
+  function handleSearch(searchTerm) {
+    const filtered = cardData.filter((manga) => 
+    manga.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    setFilteredManags(filtered);
+  }
+
+  const mangaList = filteredMangas.map((manga) => (
     <Col
       xs={12}
       sm={6}
@@ -18,14 +25,14 @@ const MangaScreen = () => {
       className="d-flex justify-content-evenly"
       key={manga.id}
     >
-      <Cards title={manga.title} imageUrl={manga.imgSrc} id={manga.id} />
+      <Cards title={manga.title} imageUrl={manga.imgSrc} id={manga.id}/>
     </Col>
   ));
 
   return (
     <>
-      <Header title="MANGAAAAAAAA (truc nul pour Antoine)" />
-        <SearchBar />
+      <Header title="MANGA"/>
+        <SearchBar onSearch={handleSearch}/>
       <Container className="d-flex text-center">
         <Row className="g-3 mt-3">{mangaList}</Row>
       </Container>
