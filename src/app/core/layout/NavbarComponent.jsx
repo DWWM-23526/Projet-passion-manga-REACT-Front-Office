@@ -1,5 +1,5 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
-import NavbarIcone from "../navbarIcon/NavbarIcon";
+import NavbarIcone from "./navbarIcon/NavbarIcon";
 import { Link } from "react-router-dom";
 
 import "./navbarComponent.scss";
