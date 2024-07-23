@@ -2,6 +2,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import Cards from "../../shared/components/Card/Card";
 
 import { cardData } from "./../../shared/components/Card/cardData";
+import Header from "./../../core/layout/header/Header"
 
 const MangaScreen = () => {
   let mangas = cardData;
@@ -14,6 +15,7 @@ const MangaScreen = () => {
 
   return (
     <>
+      <Header title="MANGAAAAAAAA (truc nul pour Antoine)" />
       <Container className="d-flex text-center">
         <Row className="g-3 mt-3">{mangaList}</Row>
       </Container>

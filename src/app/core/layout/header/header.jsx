@@ -1,17 +1,17 @@
+/* eslint-disable react/prop-types */
 import { Image, Row, Col } from "react-bootstrap";
 import baner from "./../../../../assets/img/baner.jpg"
 import "./header.scss"
 
-const Header = () => {
+const Header = (props) => {
     let isConnected =  true;
 
     let connectedPart;
 
+
     if(isConnected){
         connectedPart = (<h1>ici tu es connecté </h1>);
-    }
-
-    
+    }    
 
     return (
         <>
@@ -19,7 +19,7 @@ const Header = () => {
                 <div className="marge-pm">
                     <Row className="bg-primary">
                         <Col xs={12} sm={9} className="my-5">
-                            <div>Cc</div>
+                            <div> MSG : {props.title}</div>
                             
                             {connectedPart}
                         </Col>
