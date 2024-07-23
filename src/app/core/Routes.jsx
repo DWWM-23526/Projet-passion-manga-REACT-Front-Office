@@ -20,8 +20,9 @@ const Routing = () => {
         <Route path="/tags" element={<TagsScreen />} />
         <Route path="/favorites" element={<FavoriteScreen />} />
 
-        <Route path="/profiles">
+        <Route path="/profile">
           <Route path="login" element={<LoginScreen />} />
+          <Route path="logout" element={<LoginScreen />} />
           <Route path="register" element={<RegisterScreen />} />
           <Route path=":profileID" element={<UserScreen />} />
         </Route>
