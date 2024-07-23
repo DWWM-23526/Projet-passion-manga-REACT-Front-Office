@@ -1,8 +1,8 @@
 import { Container, Image } from "react-bootstrap";
-import  facebookSvg  from "../../../../assets/svg/facebook.svg";
-import instagramSvg from "../../../../assets/svg/instagram.svg";
-import githubSvg from "../../../../assets/svg/github.svg";
-import twitterSvg from "../../../../assets/svg/twitter.svg";
+import  facebookSvg  from "../../../assets/svg/facebook.svg";
+import instagramSvg from "../../../assets/svg/instagram.svg";
+import githubSvg from "../../../assets/svg/github.svg";
+import twitterSvg from "../../../assets/svg/twitter.svg";
 
 
 

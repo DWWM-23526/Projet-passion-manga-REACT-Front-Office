@@ -2,7 +2,6 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import NavbarIcone from "./navbarIcon/NavbarIcon";
 import { Link } from "react-router-dom";
 
-import "./navbarComponent.scss";
 
 const NavbarComponent = () => {
   let isConnected = false;
