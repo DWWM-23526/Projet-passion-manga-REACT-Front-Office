@@ -2,6 +2,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import NavbarIcone from "./navbarIcon/NavbarIcon";
 import { Link } from "react-router-dom";
 
+
 const NavbarComponent = () => {
   let isConnected = false;
   let profileID = 5;
