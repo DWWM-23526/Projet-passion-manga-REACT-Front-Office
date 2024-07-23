@@ -7,7 +7,7 @@ import UserScreen from "./screens/user/UserScreen";
 import MangaScreen from "../screens/manga/MangaScreen";
 import MangakaScreen from "../screens/mangaka/MangakaScreen";
 import TagsScreen from "../screens/tags/TagsScreen";
-import FavoriteScreen from "../screens/favorites/FavoriteScreen";
+import FavoriteScreen from "../screens/FavoriteScreen";
 import PageNotFound from "./screens/PageNotFound";
 import ShowMangaScreen from "../screens/manga/ShowMangaScreen";
 

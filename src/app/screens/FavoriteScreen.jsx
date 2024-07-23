@@ -1,9 +1,8 @@
 import { Col, Container, Row } from "react-bootstrap";
-import Cards from "../../shared/components/Card/Card";
+import Cards from "../shared/components/Card/Card";
+import { cardData } from "../../../data/cardData";
 
-import { cardData } from "../../../../data/cardData";
-
-const MangakaScreen = () => {
+const FavoriteScreen = () => {
   let mangas = cardData;
 
   const mangaList = mangas.map((manga) => (
@@ -21,4 +20,4 @@ const MangakaScreen = () => {
   );
 };
 
-export default MangakaScreen;
+export default FavoriteScreen;
