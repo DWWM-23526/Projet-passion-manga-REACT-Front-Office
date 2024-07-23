@@ -1,5 +1,5 @@
 import imgTest from "./../src/assets/img/hirohiko_araki.jpg"
-const mangakas = [
+const mangakasData = [
   {
     id:1,
     imgSrc: imgTest,
@@ -28,4 +28,4 @@ const mangakas = [
 
 ];
 
-export { mangakas };
+export { mangakasData };

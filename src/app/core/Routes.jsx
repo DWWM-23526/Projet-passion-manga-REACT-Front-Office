@@ -10,6 +10,7 @@ import TagsScreen from "../screens/tags/TagsScreen";
 import FavoriteScreen from "../screens/FavoriteScreen";
 import PageNotFound from "./screens/PageNotFound";
 import ShowMangaScreen from "../screens/manga/ShowMangaScreen";
+import ShowMangakaScreen from "../screens/mangaka/ShowMangakaScreen";
 
 const Routing = () => {
   return (
@@ -24,7 +25,7 @@ const Routing = () => {
 
         <Route path="/mangaka">
           <Route path="" element={<MangakaScreen />} />
-          <Route path=":id" element={<MangakaScreen />} />
+          <Route path=":id" element={<ShowMangakaScreen/>} />
         </Route>
 
         <Route path="/tags" element={<TagsScreen />} />

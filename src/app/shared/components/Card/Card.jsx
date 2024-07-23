@@ -1,19 +1,18 @@
 import { Card } from "react-bootstrap";
-
-import "./cards.scss";
 import { Link } from "react-router-dom";
+import "./cards.scss";
 
 // eslint-disable-next-line react/prop-types
-const Cards = ({ title, imageUrl, id }) => {
+const Cards = ({ title, imageUrl, url }) => {
   return (
-    <>
-      <Card className="cardStyle text-decoration-none mb-4" as={Link} to={`/manga/${id}`}>
+    <Card className="cardStyle text-decoration-none mb-4">
+      <Link to={url} className="text-decoration-none">
         <Card.Img variant="top" src={imageUrl} className="card-img-top" />
         <Card.Body>
           <Card.Title className="text-center">{title}</Card.Title>
         </Card.Body>
-      </Card>
-    </>
+      </Link>
+    </Card>
   );
 };
 
