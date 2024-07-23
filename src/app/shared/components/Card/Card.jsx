@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 const Cards = ({ title, imageUrl }) => {
   return (
     <>
-      <Col xs={12} sm={6} md={4} lg={3} xl={3}>
+      <Col xs={12} sm={6} md={4} lg={3} xl={3}
+      className="d-flex justify-content-evenly">
         <Card
           style={{ width: "14rem" }}
           className="cardStyle text-decoration-none mb-4"

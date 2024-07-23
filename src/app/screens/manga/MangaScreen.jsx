@@ -6,7 +6,7 @@ const MangaScreen = () => {
   return (
     <>
       <div>Coucou Manga</div>
-      <Container className="d-flex justify-content-center">
+      <Container className="d-flex text-center">
         <Row className="g-3 mt-3">
           <Cards title={"Naruto"} imageUrl={imageUrl1}/>
           <Cards title={"Naruto"} imageUrl={imageUrl1}/>
