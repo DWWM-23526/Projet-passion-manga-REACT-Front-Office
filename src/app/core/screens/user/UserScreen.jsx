@@ -1,9 +1,9 @@
+import Header from "../../layout/header/Header";
+
 const UserScreen = () => {
   return (
     <>
-    <div>
-      Coucou User
-    </div>
+    <Header title="PROFILE" />
     </>
   )
 }

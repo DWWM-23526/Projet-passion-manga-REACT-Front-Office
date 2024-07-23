@@ -2,11 +2,12 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import './registerScreen.scss'
+import Header from "../../layout/header/Header";
 
 const RegisterScreen = () => {
   return (
     <>
-      <div>Coucou Register</div>
+    <Header title="INSCRIPTION" />
       <Container fluid>
         <Row className="justify-content-center p-5">
           <Col md={6} className="d-flex align-items-center">
@@ -56,7 +57,7 @@ const RegisterScreen = () => {
                 </Button>
               </Form>
               <div className="mt-3">
-                <Link to="/profile/login">Connectez-vous</Link>
+                <Link to="/profil/login">Connectez-vous</Link>
               </div>
             </div>
           </Col>

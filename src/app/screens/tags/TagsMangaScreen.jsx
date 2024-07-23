@@ -1,10 +1,10 @@
 import { Col, Container, Row } from "react-bootstrap";
-import { cardData } from "./../../../../data/cardData";
+import { cardData } from "../../../../data/cardData";
 
-import Cards from "./../../shared/components/Card/Card";
-import Header from "./../../core/layout/header/Header";
+import Cards from "../../shared/components/Card/Card";
+import Header from "../../core/layout/header/Header";
 
-const MangaScreen = () => {
+const TagsMangaScreen = () => {
   let mangas = cardData;
 
   const mangaList = mangas.map((manga) => (
@@ -23,4 +23,4 @@ const MangaScreen = () => {
   );
 };
 
-export default MangaScreen;
+export default TagsMangaScreen;

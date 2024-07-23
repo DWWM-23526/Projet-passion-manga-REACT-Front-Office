@@ -1,5 +1,5 @@
-import imgTest from "./../../../../assets/img/naruto1.jpg"
-const cardData = [
+import imgTest from "./../src/assets/img/genre-image.webp"
+const tagsData = [
   {
     id:1,
     imgSrc: imgTest,
@@ -28,4 +28,4 @@ const cardData = [
 
 ];
 
-export { cardData };
+export { tagsData };
