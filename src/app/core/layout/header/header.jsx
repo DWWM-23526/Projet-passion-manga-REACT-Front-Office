@@ -1,5 +1,6 @@
-import { Container , Image } from "react-bootstrap";
-import baner from "../../../../assets/img/baner.jpg"
+import { Image, Row, Col } from "react-bootstrap";
+import baner from "./../../../../assets/img/baner.jpg"
+import "./header.scss"
 
 const Header = () => {
     let isConnected =  true;
@@ -14,12 +15,19 @@ const Header = () => {
 
     return (
         <>
-            <header className="text-center bg-primary">
-                <Container>
-                    <div>Cc</div>
-                    <Image src={baner}/>
-                    {connectedPart}
-                </Container>
+            <header className="text-center bg-dark">
+                <div className="marge-pm">
+                    <Row className="bg-primary">
+                        <Col xs={12} sm={9} className="my-5">
+                            <div>Cc</div>
+                            
+                            {connectedPart}
+                        </Col>
+                        <Col xs={12} sm={3} className="align-self-end mb-3 mr-1">
+                            <Image className="img-fluid" src={baner}/>
+                        </Col>
+                    </Row>
+                </div>
             </header>
         </>
     );
