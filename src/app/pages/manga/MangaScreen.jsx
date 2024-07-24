@@ -26,14 +26,19 @@ const MangaScreen = () => {
       className="d-flex justify-content-evenly"
       key={manga.id}
     >
-      <Cards title={manga.title} imageUrl={manga.imgSrc} id={manga.id} />
+      <Cards
+        title={manga.title}
+        imageUrl={manga.imgSrc}
+        id={manga.id}
+        url={`/manga/${manga.id}`}
+      />
     </Col>
   ));
 
   return (
     <>
       <Header title="MANGA" />
-      <SearchBar onSearch={handleSearch}/>
+      <SearchBar onSearch={handleSearch} />
       <Container className="d-flex text-center">
         <Row className="g-3 mt-3">{mangaList}</Row>
       </Container>

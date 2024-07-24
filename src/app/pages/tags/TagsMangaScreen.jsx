@@ -3,7 +3,6 @@ import { cardData } from "../../../../data/cardData";
 
 import Cards from "../../shared/components/Card/Card";
 import Header from "../../core/layout/header/Header";
-
 const TagsMangaScreen = () => {
   let mangas = cardData;
 

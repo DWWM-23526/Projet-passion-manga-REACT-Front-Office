@@ -2,6 +2,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { tagsData } from "../../../../data/TagsData";
 import Header from "../../core/layout/header/Header";
 import Cards from "../../shared/components/Card/Card";
+import SearchBar from "../../shared/components/Searchbar/SearchBar";
 
 const TagsScreen = () => {
   let tags = tagsData;
@@ -15,6 +16,7 @@ const TagsScreen = () => {
   return (
     <>
       <Header title="MANGA" />
+      <SearchBar/>
       <Container className="d-flex text-center">
         <Row className="g-3 mt-3">{mangaList}</Row>
       </Container>
