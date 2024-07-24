@@ -6,6 +6,7 @@ import AuthProvider from "./contexts/auth/AuthProvider";
 function App() {
   return (
     <>
+    
       <AuthProvider>
         <div className="d-flex flex-column min-vh-100">
           <NavbarComponent />

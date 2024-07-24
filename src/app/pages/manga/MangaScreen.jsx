@@ -5,8 +5,27 @@ import Cards from "./../../shared/components/Card/Card";
 import Header from "./../../core/layout/header/Header";
 import SearchBar from "../../shared/components/Searchbar/SearchBar";
 import { useState } from "react";
+// import { useApiContext } from "../../core/contexts/api/ApiContext";
 
 const MangaScreen = () => {
+  // const { data, loading, error, fetchData } = useApiContext();
+
+  //   useEffect(() => {
+  //       fetchData('/manga');
+  //   }, [fetchData]);
+
+  //   if (loading) return <p>Loading...</p>;
+  //   if (error) return <p>Error: {error}</p>;
+
+  //   return (
+  //       <div>
+  //           <h1>Mangas</h1>
+  //           <ul>
+  //               {data && data.map(manga => (
+  //                   <li key={manga.id}>{manga.title}</li>
+  //               ))}
+  //           </ul>
+  //       </div>
   const [filteredMangas, setFilteredMangas] = useState(cardData);
 
   const handleSearch = (searchTerm) => {
