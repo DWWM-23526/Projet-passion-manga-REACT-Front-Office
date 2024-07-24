@@ -4,20 +4,36 @@ class AuthService {
   }
 
   async fetchUser() {
-    const response = await fetch(this.apiUrl);
-    if (!response.ok) {
-      throw new Error("Failed to fetch user");
+    try {
+      const response = await fetch(this.apiUrl);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch user: ${response.statusText}`);
+      }
+      return response.json();
+    } catch (error) {
+      throw new Error(`Failed to fetch user: ${error.message}`);
     }
-    return response.json();
   }
 
-  // async login(credentials) {
-  //   try {
-  //     const response = fetch(`http://api-passion-manga/api/users/1`)
-  //   } catch (error) {
-      
-  //   }
-  // }
+  async login(credentials) {
+    try {
+      const response = await fetch(`http://api-passion-manga/api/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credentials),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to login: ${response.statusText}`);
+      }
+
+      return response.json();
+    } catch (error) {
+      throw new Error(`Failed to login: ${error.message}`);
+    }
+  }
 }
 
 export default AuthService;

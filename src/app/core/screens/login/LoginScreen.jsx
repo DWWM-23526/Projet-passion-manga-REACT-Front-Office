@@ -1,30 +1,32 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 
 import Header from "../../layout/header/Header";
 
 import "./loginScreen.scss";
-
-
+import AuthContext from "../../contexts/auth/AuthContext";
 
 const LoginScreen = () => {
-
   const userEmail = useRef(null);
   const userPassword = useRef(null);
+  const { login } = useContext(AuthContext);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const email = userEmail.current.value;
     const password = userPassword.current.value;
 
-    console.log(email, password)
+    try {
+      login({ email, password });
+    } catch (error) {
+      console.error("Failed to login:", error);
+    }
 
-    userEmail.current.value = '';
-    userPassword.current.value = '';
+    userEmail.current.value = "";
+    userPassword.current.value = "";
   };
-
 
   return (
     <>
@@ -44,7 +46,13 @@ const LoginScreen = () => {
                   <div className="mt-1 mb-2">
                     <Link href="#">Mdp oublié ?</Link>
                   </div>
-                  <Form.Control type="password" ref={userPassword} name="password" id="pwd" placeholder="Enter password" />
+                  <Form.Control
+                    type="password"
+                    ref={userPassword}
+                    name="password"
+                    id="pwd"
+                    placeholder="Enter password"
+                  />
                 </Form.Group>
                 <Button type="submit" className="btn btn-dark btn-block mt-4">
                   Login
