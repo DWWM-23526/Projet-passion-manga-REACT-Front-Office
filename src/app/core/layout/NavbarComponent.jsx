@@ -4,22 +4,31 @@ import { Link } from "react-router-dom";
 
 
 const NavbarComponent = () => {
-  let isConnected = false;
+  let isConnected = true;
   let profileID = 5;
-  let navPart;
+  let profilPart;
+  let navPart
 
   if (isConnected) {
-    navPart = (
+    profilPart = (
       <Nav>
-        <NavbarIcone name="Profile" path={`/profil/${profileID}`} />
-        <NavbarIcone name="Deconnexion" path="/logout" />
+        <NavbarIcone name="Profil" path={`/profil/${profileID}`} />
+        <NavbarIcone name="Déconnexion" path="/profil/logout" />
       </Nav>
     );
+    navPart =(
+      <NavbarIcone name="Favoris" path="/favorites" />
+    );
+    
+    
   } else {
-    navPart = (
+    profilPart = (
       <Nav>
         <NavbarIcone name="Connexion" path="/profil/login" />
       </Nav>
+    );
+    navPart =(
+     <></>
     );
   }
 
@@ -36,8 +45,9 @@ const NavbarComponent = () => {
             <NavbarIcone name="Mangas" path="/manga" />
             <NavbarIcone name="Mangakas" path="/mangaka" />
             <NavbarIcone name="Genres" path="/tags" />
+            {navPart}
           </Nav>
-          {navPart}
+          {profilPart}
         </Container>
       </Navbar>
     </>

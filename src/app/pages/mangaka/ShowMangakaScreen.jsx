@@ -1,10 +1,12 @@
-import { Col, Row, Container, Card } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 
-import "./showMangaScreen.scss";
-import Img from "./../../../assets/img/naruto1.jpg";
+import Img from "./../../../assets/img/hirohiko_araki.jpg";
+import Header from "../../core/layout/header/Header";
 
-const ShowMangaScreen = () => {
+const ShowMangakaScreen = () => {
   return (
+    <>
+    <Header title="MANGAKA" />
     <Container className="my-4">
       <Row>
         <Col xs={12} md={6} className="d-flex justify-content-center align-items-center">
@@ -55,7 +57,9 @@ const ShowMangaScreen = () => {
         </Col>
       </Row>
     </Container>
+    </>
+    
   );
 };
 
-export default ShowMangaScreen;
+export default ShowMangakaScreen;

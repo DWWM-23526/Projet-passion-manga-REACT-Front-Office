@@ -4,7 +4,7 @@ import baner from "./../../../../assets/img/baner.jpg"
 import "./header.scss"
 
 const Header = (props) => {
-    let isConnected =  true;
+    let isConnected =  false;
 
     let connectedPart;
 
@@ -15,15 +15,16 @@ const Header = (props) => {
 
     return (
         <>
-            <header className="text-center bg-dark">
+            <header className="bg-dark">
                 <div className="marge-pm">
                     <Row className="bg-primary">
-                        <Col xs={12} sm={9} className="my-5">
-                            <div> MSG : {props.title}</div>
-                            
+                        <Col xs={12} sm={8} className="my-5">
+                            <h1 className="text-light">{props.title}</h1>
+                            <br />
                             {connectedPart}
+                            <br />
                         </Col>
-                        <Col xs={12} sm={3} className="align-self-end mb-3 mr-1">
+                        <Col xs={12} sm={4} className="align-self-end mb-3 pe-3">
                             <Image className="img-fluid" src={baner}/>
                         </Col>
                     </Row>

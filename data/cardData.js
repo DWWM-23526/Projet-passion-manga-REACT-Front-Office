@@ -1,4 +1,4 @@
-import imgTest from "./../../../../assets/img/naruto1.jpg"
+import imgTest from "./../src/assets/img/naruto1.jpg"
 const cardData = [
   {
     id:1,
