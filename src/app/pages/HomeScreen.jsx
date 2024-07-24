@@ -1,7 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
-import Header from "./../../core/layout/header/Header"
+import Header from "../core/layout/header/Header"
 
 
 

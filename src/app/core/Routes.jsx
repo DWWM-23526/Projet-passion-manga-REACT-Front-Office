@@ -1,17 +1,17 @@
 import { Route, Routes } from "react-router-dom";
 
-import HomeScreen from "../screens/homePage/HomeScreen";
+import HomeScreen from "../pages/HomeScreen";
 import LoginScreen from "./screens/login/LoginScreen";
 import RegisterScreen from "./screens/register/RegisterScreen";
 import UserScreen from "./screens/user/UserScreen";
-import MangaScreen from "../screens/manga/MangaScreen";
-import MangakaScreen from "../screens/mangaka/MangakaScreen";
-import TagsScreen from "../screens/tags/TagsScreen";
-import FavoriteScreen from "../screens/FavoriteScreen";
-import PageNotFound from "./screens/PageNotFound";
-import ShowMangaScreen from "../screens/manga/ShowMangaScreen";
-import ShowMangakaScreen from "../screens/mangaka/ShowMangakaScreen";
-import TagsMangaScreen from "../screens/tags/TagsMangaScreen";
+import MangaScreen from "../pages/manga/MangaScreen";
+import MangakaScreen from "../pages/mangaka/MangakaScreen";
+import TagsScreen from "../pages/tags/TagsScreen";
+import FavoriteScreen from "../pages/FavoriteScreen";
+import PageNotFound from "../pages/PageNotFound";
+import ShowMangaScreen from "../pages/manga/ShowMangaScreen";
+import ShowMangakaScreen from "../pages/mangaka/ShowMangakaScreen";
+import TagsMangaScreen from "../pages/tags/TagsMangaScreen";
 
 const Routing = () => {
   return (
