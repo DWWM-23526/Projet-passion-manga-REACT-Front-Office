@@ -3,27 +3,27 @@ const cardData = [
   {
     id:1,
     imgSrc: imgTest,
-    title: "quoicou",
+    title: "Naruto",
   },
   {
     id:2,
     imgSrc: imgTest,
-    title: "coucou2",
+    title: "One Piece",
   },
   {
     id:3,
     imgSrc: imgTest,
-    title: "Beh"
+    title: "Bleach"
   },
   {
     id:4,
     imgSrc: imgTest,
-    title: "Beh"
+    title: "Tokyo Ghoul"
   },
   {
     id:5,
     imgSrc: imgTest,
-    title: "Beh"
+    title: "My Hero Academia"
   },
 
 ];
