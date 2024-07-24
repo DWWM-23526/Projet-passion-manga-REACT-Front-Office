@@ -1,35 +1,34 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
-import NavbarIcone from "./navbarIcon/NavbarIcon";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 
+import AuthContext from "../contexts/auth/AuthContext";
+import NavbarIcone from "./navbarIcon/NavbarIcon";
 
 const NavbarComponent = () => {
-  let isConnected = true;
+  const { isAuthenticated } = useContext(AuthContext);
+
+  console.log(isAuthenticated)
+  
   let profileID = 5;
   let profilPart;
-  let navPart
+  let navPart;
 
-  if (isConnected) {
+  if (isAuthenticated) {
     profilPart = (
       <Nav>
         <NavbarIcone name="Profil" path={`/profil/${profileID}`} />
         <NavbarIcone name="Déconnexion" path="/profil/logout" />
       </Nav>
     );
-    navPart =(
-      <NavbarIcone name="Favoris" path="/favorites" />
-    );
-    
-    
+    navPart = <NavbarIcone name="Favoris" path="/favorites" />;
   } else {
     profilPart = (
       <Nav>
         <NavbarIcone name="Connexion" path="/profil/login" />
       </Nav>
     );
-    navPart =(
-     <></>
-    );
+    navPart = <></>;
   }
 
   return (
