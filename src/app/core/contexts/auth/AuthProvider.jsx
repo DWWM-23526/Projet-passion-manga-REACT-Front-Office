@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useMemo, useState } from "react";
+
+import { useCallback, useEffect, useMemo, useState } from "react";
 import AuthService from "../../service/AuthService";
 import AuthContext from "./AuthContext";
-
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -16,8 +16,8 @@ const AuthProvider = ({ children }) => {
       try {
         const userData = await authService.fetchUser();
         setUser(userData);
-      } catch (error) {
-        setError(error);
+      } catch (err) {
+        setError(err);
       } finally {
         setLoading(false);
       }
@@ -26,17 +26,38 @@ const AuthProvider = ({ children }) => {
     loadUser();
   }, [authService]);
 
-  const contextValue = useMemo(
-    () => ({
-      user,
-      isAuthenticated: !user,
-      loading,
-      error,
-    }),
-    [user, loading, error]
-  );
+  const login = useCallback(async (credentials) => {
+    try {
+      const userData = await authService.login(credentials);
+      setUser(userData);
+    } catch (err) {
+      setError(err);
+    }
+  }, [authService]);
 
-  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
+  const logout = useCallback(() => {
+    try {
+     
+      setUser(null);
+    } catch (err) {
+      setError(err);
+    }
+  });
+
+  const contextValue = useMemo(() => ({
+    user,
+    isAuthenticated: !!user,
+    loading,
+    error,
+    login,
+    logout,
+  }), [user, loading, error, login, logout]);
+
+  return (
+    <AuthContext.Provider value={contextValue}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;
