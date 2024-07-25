@@ -5,6 +5,8 @@ import AuthContext from "../../contexts/auth/AuthContext";
 const UserScreen = () => {
   const { user, loading, error } = useContext(AuthContext);
 
+  console.log(user);
+  
   if (loading) {
     return <p>Loading...</p>; 
   }
