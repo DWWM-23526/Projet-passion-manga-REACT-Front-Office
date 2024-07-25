@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import MangaService from "../services/MangaService";
+import TagService from "../services/TagService";
 
-function useManga() {
+function useTag() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const mangaService = new MangaService();
+    const tagService = new TagService();
 
-    mangaService
+    tagService
       .fetchAllDataByTable()
       .then((fetchAllDataByTable) => {
+        setData(fetchAllDataByTable);
         setData(fetchAllDataByTable);
         setLoading(false);
       })
@@ -20,7 +21,7 @@ function useManga() {
         setLoading(false);
       });
   }, []);
-  return { data, loading, error};
+  return { data, loading, error };
 }
 
-export default useManga;
+export default useTag;

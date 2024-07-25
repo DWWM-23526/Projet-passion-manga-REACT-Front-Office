@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import MangaService from "../services/MangaService";
+import MangakaService from "../services/MangakaService";
 
-function useManga() {
+function useMangaka() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const mangaService = new MangaService();
+    const mangakaService = new MangakaService();
 
-    mangaService
+    mangakaService
       .fetchAllDataByTable()
       .then((fetchAllDataByTable) => {
         setData(fetchAllDataByTable);
@@ -20,7 +20,7 @@ function useManga() {
         setLoading(false);
       });
   }, []);
-  return { data, loading, error};
+  return { data, loading, error };
 }
 
-export default useManga;
+export default useMangaka;
