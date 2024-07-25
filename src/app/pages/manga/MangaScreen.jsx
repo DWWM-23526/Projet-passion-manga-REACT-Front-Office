@@ -12,7 +12,7 @@ const MangaScreen = () => {
 
   useEffect(() => {
     showAllDataByPage("/manga");
-  }, [showAllDataByPage]);
+  }, []);
 
   return (
     

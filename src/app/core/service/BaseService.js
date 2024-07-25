@@ -1,6 +1,8 @@
-class ApiService {
-  constructor(dataUrl) {
-    this.dataUrl = dataUrl;
+import baseUrl from "../../../../.env/config/baseUrl";
+
+class BaseService {
+  constructor() {
+    this.dataUrl = baseUrl;
   }
 
   async getData() {
@@ -15,17 +17,20 @@ class ApiService {
     }
   }
 
-  async fetchAllDataByTable(endpointTable) {
+  async fetchAllDataDataByTable(endpointTable) {
     try {
       const response = await fetch(`${this.dataUrl}${endpointTable}`);
       if (!response.ok) {
-        throw new Error(`Failed to fetch all data by table: ${response.statusText}`);
+        throw new Error(
+          `Failed to fetch all data by table: ${response.statusText}`
+        );
       }
-      return response.json();
     } catch (error) {
       throw new Error(`Failed to fetch all data by table: ${error.message}`);
     }
   }
+
+  // TODO : Add different method for use API call
 }
 
-export default ApiService;
+export default BaseService;

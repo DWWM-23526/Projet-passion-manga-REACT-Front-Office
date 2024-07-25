@@ -1,5 +1,9 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 // import { Col, Container, Row } from "react-bootstrap";
 // import { mangakasData } from "../../../../data/mangakas";
+
+import { useContext, useEffect } from "react";
+import ApiContext from "../../core/contexts/api/ApiContext";
 
 // import Header from "../../core/layout/header/Header";
 // import Cards from "../../shared/components/Card/Card";
@@ -8,25 +12,25 @@
 // import ApiContext from "../../core/contexts/api/ApiContext";
 
 const MangakaScreen = () => {
-  // const { data, loading, error, fetchData } = useContext(ApiContext);
+  const { data, showAllDataByPage } = useContext(ApiContext);
 
-  // useEffect(() => {
-  //   fetchData("/mangaka");
-  // }, [fetchData]);
 
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error: {error}</p>;
+  useEffect(() => {
+    showAllDataByPage("/mangaka");
+  }, [showAllDataByPage]);
 
-  // return (
+  
+
+  return (
     
-  //   <div>
-  //     <h1>Mangakas</h1>
-  //     <ul>
-  //       {data && data.map((mangaka) => <li key={mangaka.id}></li>)}
-  //     </ul>
-  //   </div>
+    <div>
+      <h1>Mangakas</h1>
+      <ul>
+        {data && data.map((mangaka) => <li key={mangaka.id}></li>)}
+      </ul>
+    </div>
     
-  // );
+  );
   // let mangakas = mangakasData;
 
   // const mangaList = mangakas.map((mangaka) => (
