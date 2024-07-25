@@ -24,7 +24,7 @@ class AuthService {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ token }), // Correction ici
+      body: JSON.stringify({ token }), 
     });
 
     if (!response.ok) {
