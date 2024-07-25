@@ -6,18 +6,20 @@ import AuthContext from "../contexts/auth/AuthContext";
 import NavbarIcone from "./navbarIcon/NavbarIcon";
 
 const NavbarComponent = () => {
-  const { isAuthenticated, logout } = useContext(AuthContext);
+  const { isAuthenticated, user ,logout } = useContext(AuthContext);
 
  
 
-  let profileID = 5;
+  
   let profilPart;
   let navPart;
 
-  if (isAuthenticated) {
+  if (isAuthenticated && user) {
+    let profileName = user.name;
+    
     profilPart = (
       <Nav>
-        <NavbarIcone name="Profil" path={`/profil/${profileID}`} />
+        <NavbarIcone name="Profil" path={`/profil/${profileName}`} />
         <Link onClick={logout} className="nav-Link fs-4 fw-bold m-2 mb-auto" to="/">
           Déconnexion
         </Link>
