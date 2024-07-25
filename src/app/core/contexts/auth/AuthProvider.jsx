@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import AuthService from "../../service/AuthService";
 import AuthContext from "./AuthContext";
 
@@ -9,54 +9,67 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const authService = useMemo(() => new AuthService("http://api-passion-manga/api/users/1"), []);
+  const authService = useMemo(() => new AuthService("http://api-passion-manga/api"), []);
 
   useEffect(() => {
-    const loadUser = async () => {
+    const checkAuthStatus = async () => {
       try {
-        const userData = await authService.fetchUser();
-        setUser(userData);
+        const token = localStorage.getItem("authToken");
+
+        if (token) {
+          const user = await authService.validateToken(token);
+          console.log(user);
+
+          if (user) {
+            setUser(user);
+          } else {
+            setUser(null);
+          }
+        } else {
+          setUser(null);
+        }
       } catch (err) {
+        console.log(err);
         setError(err);
       } finally {
         setLoading(false);
       }
     };
 
-    loadUser();
+    checkAuthStatus();
   }, [authService]);
 
-  const login = useCallback(async (credentials) => {
+  const login = async (credentials) => {
     try {
-      const userData = await authService.login(credentials);
+      const { userData, token } = await authService.login(credentials);
+      localStorage.setItem("authToken", token);
+      console.log(userData);
+    
       setUser(userData);
     } catch (err) {
       setError(err);
     }
-  }, [authService]);
+  };
 
-  const logout = useCallback(() => {
+  const logout = () => {
     try {
+      localStorage.removeItem("authToken");
       setUser(null);
     } catch (err) {
       setError(err);
     }
-  });
+  };
 
-  const contextValue = useMemo(() => ({
+  const contextValue = {
     user,
     isAuthenticated: !!user,
     loading,
     error,
     login,
     logout,
-  }), [user, loading, error, login, logout]);
+  };
 
-  return (
-    <AuthContext.Provider value={contextValue}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;
