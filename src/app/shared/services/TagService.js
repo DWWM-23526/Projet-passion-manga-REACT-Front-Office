@@ -1,10 +1,9 @@
 import BaseService from "../../core/service/BaseService";
 
-class TagService extends BaseService {
+export default class TagService extends BaseService {
   endpointTable = "/tags";
 
   fetchAllDataDataByTable() {
-    super.fetchAllDataDataByTable(this.endpointTable);
+   return super.fetchAllDataByTable(this.endpointTable);
   }
 }
-export default TagService;

@@ -37,7 +37,6 @@ const AuthProvider = ({ children }) => {
 
   const logout = useCallback(() => {
     try {
-     
       setUser(null);
     } catch (err) {
       setError(err);

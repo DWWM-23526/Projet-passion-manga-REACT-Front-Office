@@ -1,12 +1,10 @@
 import BaseService from "../../core/service/BaseService";
 
-class MangaService extends BaseService{
+export default class MangaService extends BaseService{
 
   endpointTable = "/manga";
 
-  fetchAllDataDataByTable() {
-    super.fetchAllDataDataByTable(this.endpointTable);
+  fetchAllDataByTable() {
+    return super.fetchAllDataByTable(this.endpointTable);
   }
 }
-
-export default MangaService;

@@ -11,6 +11,8 @@ const ApiProvider = ({ children }) => {
   // const [loading, setLoading] = useState(false);
   // const [error, setError] = useState(null);
 
+  // Init Service
+
   const mangaService = useMemo(() => new MangaService(), []);
 
   const mangakaService = useMemo(() => new MangakaService(), []);

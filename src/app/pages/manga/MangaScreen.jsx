@@ -4,22 +4,21 @@
 // import Cards from "./../../shared/components/Card/Card";
 // import Header from "./../../core/layout/header/Header";
 // import SearchBar from "../../shared/components/Searchbar/SearchBar";
-import { useContext, useEffect } from "react";
-import ApiContext from "../../core/contexts/api/ApiContext";
+import useManga from "../../shared/hooks/useManga";
 
 const MangaScreen = () => {
-  const { data, showAllDataByPage } = useContext(ApiContext);
+  const {data, loading, error} = useManga();
 
-  useEffect(() => {
-    showAllDataByPage("/manga");
-  }, []);
+  if (loading) return <p>Loading</p>;
+  if (error) return <p>Error: {error.message}</p>
 
   return (
     
     <div>
       <h1>Mangas</h1>
       <ul>
-        {data && data.map((manga) => <li key={manga.id}>{manga.title}</li>)}
+        
+      <pre>{JSON.stringify(data, null, 2)}</pre>
       </ul>
     </div>
     
