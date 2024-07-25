@@ -7,8 +7,20 @@ const TagsMangaScreen = () => {
   let mangas = cardData;
 
   const mangaList = mangas.map((manga) => (
-    <Col xs={12} sm={6} md={4} lg={3} xl={3} className="d-flex justify-content-evenly" key={manga.id}>
-      <Cards title={manga.title} imageUrl={manga.imgSrc} url={'/manga/' + manga.id} />
+    <Col
+      xs={12}
+      sm={6}
+      md={4}
+      lg={3}
+      xl={3}
+      className="d-flex justify-content-evenly"
+      key={manga.id}
+    >
+      <Cards
+        title={manga.title}
+        imageUrl={manga.imgSrc}
+        url={"/manga/" + manga.id}
+      />
     </Col>
   ));
 

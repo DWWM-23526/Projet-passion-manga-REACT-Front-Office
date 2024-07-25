@@ -1,14 +1,36 @@
-import { Col, Container, Row } from "react-bootstrap";
-import { mangakasData } from "../../../../data/mangakas";
+/* eslint-disable react-hooks/rules-of-hooks */
 
-import Header from "../../core/layout/header/Header";
+import { useEffect, useState } from "react";
+import useMangaka from "../../shared/hooks/useMangaka";
+import { Col, Container, Row } from "react-bootstrap";
 import Cards from "../../shared/components/Card/Card";
+import defaultImg from "../../../assets/img/hirohiko_araki.jpg";
+import Header from "../../core/layout/header/Header";
 import SearchBar from "../../shared/components/Searchbar/SearchBar";
 
 const MangakaScreen = () => {
-  let mangakas = mangakasData;
+  const { data, loading, error } = useMangaka();
+  const [filteredMangakas, setFilteredMangakas] = useState([]);
 
-  const mangaList = mangakas.map((mangaka) => (
+  useEffect(() => {
+    if (data) {
+      setFilteredMangakas(data);
+    }
+  }, [data]);
+
+  const handleSearch = (searchTerm) => {
+    const filtered = data.filter((mangaka) =>
+      (
+        mangaka.first_name.toLowerCase() + mangaka.last_name.toLowerCase()
+      ).includes(searchTerm.toLowerCase())
+    );
+    setFilteredMangakas(filtered);
+  };
+
+  if (loading) return <p>Loading</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  const mangakaList = filteredMangakas.map((mangaka) => (
     <Col
       xs={12}
       sm={6}
@@ -16,12 +38,12 @@ const MangakaScreen = () => {
       lg={3}
       xl={3}
       className="d-flex justify-content-evenly"
-      key={mangaka.id}
+      key={mangaka.Id_mangaka}
     >
       <Cards
-        title={mangaka.title}
-        imageUrl={mangaka.imgSrc}
-        url={`/mangaka/${mangaka.id}`}
+        title={mangaka.first_name + " " + mangaka.last_name}
+        imageUrl={defaultImg}
+        url={`/mangaka/${mangaka.Id_mangaka}`}
       />
     </Col>
   ));
@@ -29,9 +51,9 @@ const MangakaScreen = () => {
   return (
     <>
       <Header title="MANGAKA" />
-      <SearchBar />
+      <SearchBar onSearch={handleSearch} />
       <Container className="d-flex text-center">
-        <Row className="g-3 mt-3">{mangaList}</Row>
+        <Row className="g-3 mt-3">{mangakaList}</Row>
       </Container>
     </>
   );

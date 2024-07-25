@@ -1,20 +1,30 @@
 import { Col, Container, Row } from "react-bootstrap";
-import { cardData } from "./../../../../data/cardData";
-
-import Cards from "./../../shared/components/Card/Card";
-import Header from "./../../core/layout/header/Header";
+import useManga from "../../shared/hooks/useManga";
+import Cards from "../../shared/components/Card/Card";
+import defaultImg from "../../../assets/img/naruto1.jpg";
+import Header from "../../core/layout/header/Header";
 import SearchBar from "../../shared/components/Searchbar/SearchBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const MangaScreen = () => {
-  const [filteredMangas, setFilteredMangas] = useState(cardData);
+  const { data, loading, error } = useManga();
+  const [filteredMangas, setFilteredMangas] = useState([]);
+
+  useEffect(() => {
+    if (data) {
+      setFilteredMangas(data);
+    }
+  }, [data]);
 
   const handleSearch = (searchTerm) => {
-    const filtered = cardData.filter((manga) =>
-      manga.title.toLowerCase().includes(searchTerm.toLowerCase())
+    const filtered = data.filter((manga) =>
+      manga.manga_name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredMangas(filtered);
   };
+
+  if (loading) return <p>Loading</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   const mangaList = filteredMangas.map((manga) => (
     <Col
@@ -24,13 +34,12 @@ const MangaScreen = () => {
       lg={3}
       xl={3}
       className="d-flex justify-content-evenly"
-      key={manga.id}
+      key={manga.Id_manga}
     >
       <Cards
-        title={manga.title}
-        imageUrl={manga.imgSrc}
-        id={manga.id}
-        url={`/manga/${manga.id}`}
+        title={manga.manga_name}
+        imageUrl={defaultImg}
+        url={`/manga/${manga.Id_manga}`}
       />
     </Col>
   ));
