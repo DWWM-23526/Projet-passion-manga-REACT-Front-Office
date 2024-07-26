@@ -4,11 +4,21 @@ import Img from "./../../../assets/img/naruto1.jpg";
 import Header from "../../core/layout/header/Header";
 
 import "./showMangaScreen.scss";
+import { useMangaId } from "../../shared/hooks/useManga";
+import { useParams } from "react-router-dom";
+
 
 const ShowMangaScreen = () => {
+  const {idManga} = useParams();
+  const {data, loading, error} = useMangaId(idManga);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>
+  if (!data) return <p>No data available</p>;
+
   return (
     <>
-      <Header title="MANGA" />
+      <Header title={data.manga_name} />
       <Container className="my-4">
         <Row>
           <Col xs={12} md={6} className="d-flex justify-content-center align-items-center">
@@ -23,23 +33,23 @@ const ShowMangaScreen = () => {
                   <strong>INFORMATION</strong>
                 </Card.Title>
                 <Card.Text>
-                  <strong>Edition:</strong> {" test"}
+                  <strong>Edition:</strong> {data.edition}
                 </Card.Text>
                 <Card.Text>
-                  <strong>Nombre de tomes Total:</strong> {" test"}
+                  <strong>Nombre de tomes Total:</strong> {data.total_tome_number}
                 </Card.Text>
                 <Card.Text>
-                  <strong>Année de sortie:</strong> {" test"}
+                  <strong>Année de sortie:</strong> {data.year_release}
                 </Card.Text>
                 <Card.Text>
-                  <strong>Numéro de tome:</strong> {" test"}
+                  <strong>Numéro de tome:</strong> {data.tome_number}
                 </Card.Text>
                 <hr className="my-4" />
                 <Card.Title as="h3" className="mb-4">
                   <strong>DESCRIPTION</strong>
                 </Card.Title>
                 <Card.Text>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet fugiat possimus non sequi voluptatem
+                  <p>{data.texte}</p> Amet fugiat possimus non sequi voluptatem
                   dolorem eos dolores quas tenetur similique, recusandae incidunt, nam eveniet, dolore impedit. Dicta,
                   esse. Id, adipisci! Sint magni ad unde maiores exercitationem officia, deleniti quod ea suscipit
                   labore molestias nihil modi illum architecto iure saepe natus nisi, vitae facere temporibus adipisci

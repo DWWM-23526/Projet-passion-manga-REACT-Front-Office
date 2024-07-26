@@ -5,7 +5,7 @@
 // import SearchBar from "../../shared/components/Searchbar/SearchBar";
 
 import { useEffect, useState } from "react";
-import useTag from "../../shared/hooks/useTag";
+import {useTag} from "../../shared/hooks/useTag";
 import { Col, Container, Row } from "react-bootstrap";
 import Cards from "../../shared/components/Card/Card";
 import defaultImg from "../../../assets/img/genre-image.webp";
@@ -13,7 +13,9 @@ import Header from "../../core/layout/header/Header";
 import SearchBar from "../../shared/components/Searchbar/SearchBar";
 
 const TagsScreen = () => {
-  const { data, loading, error } = useTag();
+  const { data
+    // , loading, error
+   } = useTag();
   const [filteredTags, setFilteredTags] = useState([]);
 
   useEffect(() => {
@@ -29,8 +31,8 @@ const TagsScreen = () => {
     setFilteredTags(filtered);
   };
 
-  if (loading) return <p>Loading</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  // if (loading) return <p>Loading</p>;
+  // if (error) return <p>Error: {error.message}</p>;
 
   const tagList = filteredTags.map((tag) => (
     <Col

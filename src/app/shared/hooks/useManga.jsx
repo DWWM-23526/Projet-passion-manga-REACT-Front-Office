@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import MangaService from "../services/MangaService";
 
-function useManga() {
+export function useManga() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,7 +20,27 @@ function useManga() {
         setLoading(false);
       });
   }, []);
-  return { data, loading, error};
+  return { data, loading, error };
 }
 
-export default useManga;
+export function useMangaId(id) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const mangaService = new MangaService();
+
+    mangaService
+      .fetchDataByID(id)
+      .then((mangaData) => {
+        setData(mangaData);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+      });
+  }, [id]);
+  return { data, loading, error };
+}

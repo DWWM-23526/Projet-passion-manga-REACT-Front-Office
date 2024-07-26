@@ -6,4 +6,8 @@ export default class MangakaService extends BaseService {
    fetchAllDataByTable() {
     return super.fetchAllDataByTable(this.endpointTable);
   }
+
+  fetchDataByID(id) {
+    return super.fetchDataByID(this.endpointTable, id);
+  }
 }
