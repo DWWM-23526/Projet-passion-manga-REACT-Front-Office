@@ -6,7 +6,8 @@ const ApiContext = createContext(
     mangaService : {},
     mangakaService : {},
     tagService : {},
-    favoriteService : {}
+    favoriteService : {},
+    BaseService: {}
   }
 );
 

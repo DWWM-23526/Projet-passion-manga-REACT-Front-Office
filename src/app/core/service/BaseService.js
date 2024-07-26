@@ -1,6 +1,4 @@
-
 class BaseService {
-  
   constructor() {
     this.dataUrl = import.meta.env.VITE_BASE_URL;
   }
@@ -33,9 +31,7 @@ class BaseService {
 
   async fetchDataByID(endpointTable, id) {
     try {
-      const response = await fetch(
-        `${this.dataUrl}${endpointTable}/${id}`
-      );
+      const response = await fetch(`${this.dataUrl}${endpointTable}/${id}`);
       if (!response.ok) {
         throw new Error(
           `Failed to fetch data by id by table: ${response.statusText}`
@@ -47,6 +43,23 @@ class BaseService {
     }
   }
 
+  // async fetchDataIsFavoriteByUser(endpointTable, idManga, idUser) {
+  //   try {
+  //     const response = await fetch(
+  //       `${this.dataUrl}${endpointTable}/${idManga}/${idUser}`
+  //     );
+  //     if (!response.ok) {
+  //       throw new Error(
+  //         `Failed to fetch data favorite by user: ${response.statusText}`
+  //       );
+  //     }
+  //     return response.json();
+  //   } catch (error) {
+  //     throw new Error(
+  //       `Failed to fetch data favorite by user: ${error.message}`
+  //     );
+  //   }
+  // }
   // TODO : Add different method for use API call
 }
 

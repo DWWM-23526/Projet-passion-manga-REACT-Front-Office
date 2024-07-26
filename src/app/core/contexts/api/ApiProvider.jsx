@@ -5,6 +5,7 @@ import MangaService from "../../../shared/services/MangaService";
 import MangakaService from "../../../shared/services/MangakaService";
 import TagService from "../../../shared/services/TagService";
 import FavoriteService from "../../../shared/services/FavoriteService";
+import BaseService from "../../service/BaseService";
 
 const ApiProvider = ({ children }) => {
 
@@ -18,15 +19,19 @@ const ApiProvider = ({ children }) => {
 
   const favoriteService = useMemo(() => new FavoriteService(), []);
 
+  // Test 
+  const baseService = useMemo(() => new BaseService(), []); 
+
 
   const contextValue = useMemo(
     () => ({
       mangaService,
       mangakaService,
       tagService,
-      favoriteService
+      favoriteService,
+      baseService
     }),
-    [favoriteService, mangaService, mangakaService, tagService]
+    [favoriteService, mangaService, mangakaService, tagService, baseService]
   );
 
   return (
