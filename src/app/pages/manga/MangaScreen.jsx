@@ -33,7 +33,7 @@ const MangaScreen = () => {
       md={4}
       lg={3}
       xl={3}
-      className="d-flex justify-content-evenly"
+      className="d-flex justify-content-evenly size-col"
       key={manga.Id_manga}
     >
       <Cards

@@ -5,7 +5,7 @@ import "./cards.scss";
 // eslint-disable-next-line react/prop-types
 const Cards = ({ title, imageUrl, url }) => {
   return (
-    <Card className="cardStyle text-decoration-none mb-4">
+    <Card className="card-style text-decoration-none mb-4">
       <Link to={url} className="text-decoration-none">
         <Card.Img variant="top" src={imageUrl} className="card-img-top" />
         <Card.Body>
