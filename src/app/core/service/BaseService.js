@@ -1,8 +1,8 @@
-import baseUrl from "../../../../.env/config/baseUrl";
 
 class BaseService {
+  
   constructor() {
-    this.dataUrl = baseUrl;
+    this.dataUrl = import.meta.env.VITE_BASE_URL;
   }
 
   async getData() {
