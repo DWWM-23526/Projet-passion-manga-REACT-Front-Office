@@ -13,7 +13,7 @@ const TagsMangaScreen = () => {
       md={4}
       lg={3}
       xl={3}
-      className="d-flex justify-content-evenly size-col"
+      className="d-flex justify-content-evenly"
       key={manga.id}
     >
       <Cards

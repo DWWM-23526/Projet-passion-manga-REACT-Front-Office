@@ -21,17 +21,17 @@ const Routing = () => {
 
         <Route path="/manga">
           <Route path="" element={<MangaScreen />} />
-          <Route path=":mangaTitle" element={<ShowMangaScreen />} />
+          <Route path=":idManga" element={<ShowMangaScreen />} />
         </Route>
 
         <Route path="/mangaka">
           <Route path="" element={<MangakaScreen />} />
-          <Route path=":mangakaName" element={<ShowMangakaScreen />} />
+          <Route path=":idMangaka" element={<ShowMangakaScreen />} />
         </Route>
 
         <Route path="/tags">
           <Route path="" element={<TagsScreen />} />
-          <Route path=":tagName" element={<TagsMangaScreen />} />
+          <Route path=":idTag" element={<TagsMangaScreen />} />
         </Route>
 
         <Route path="/favorites" element={<FavoriteScreen />} />

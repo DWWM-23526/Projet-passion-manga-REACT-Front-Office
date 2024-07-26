@@ -1,13 +1,13 @@
 import { Col, Container, Row } from "react-bootstrap";
-import useManga from "../../shared/hooks/useManga";
 import Cards from "../../shared/components/Card/Card";
 import defaultImg from "../../../assets/img/naruto1.jpg";
 import Header from "../../core/layout/header/Header";
 import SearchBar from "../../shared/components/Searchbar/SearchBar";
 import { useEffect, useState } from "react";
+import { useManga } from "../../shared/hooks/useManga";
 
 const MangaScreen = () => {
-  const { data, loading, error } = useManga();
+  const { data } = useManga();
   const [filteredMangas, setFilteredMangas] = useState([]);
 
   useEffect(() => {
@@ -23,8 +23,8 @@ const MangaScreen = () => {
     setFilteredMangas(filtered);
   };
 
-  if (loading) return <p>Loading</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  // if (loading) return <p>Loading</p>;
+  // if (error) return <p>Error: {error.message}</p>;
 
   const mangaList = filteredMangas.map((manga) => (
     <Col

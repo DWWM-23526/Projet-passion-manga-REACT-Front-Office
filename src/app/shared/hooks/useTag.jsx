@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TagService from "../services/TagService";
 
-function useTag() {
+export function useTag() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -24,4 +24,24 @@ function useTag() {
   return { data, loading, error };
 }
 
-export default useTag;
+export function useTagId(id){
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const mangaService = new TagService();
+
+    mangaService
+      .fetchDataByID(id)
+      .then((mangaData) => {
+        setData(mangaData);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+      });
+  }, [id]);
+  return { data, loading, error };
+}
