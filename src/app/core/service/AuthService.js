@@ -49,15 +49,11 @@ class AuthService {
 
   async login(credentials) {
     try {
-      const token = localStorage.getItem("authToken");
+      localStorage.removeItem("authToken");
 
       const headers = {
         "Content-Type": "application/json",
       };
-
-      if (token) {
-        headers["Authorization"] = `Bearer ${token}`;
-      }
 
       const response = await fetch(`http://api-passion-manga/api/login`, {
         method: "POST",

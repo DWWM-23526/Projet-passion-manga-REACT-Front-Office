@@ -1,11 +1,17 @@
 class BaseService {
   constructor() {
-    this.dataUrl = import.meta.env.VITE_BASE_URL;
+    this.apiUrl = import.meta.env.VITE_BASE_URL;
   }
+
+
+
+  async request()
+
+
 
   async getData() {
     try {
-      const response = await fetch(`${this.dataUrl}`);
+      const response = await fetch(`${this.apiUrl}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch data: ${response.statusText}`);
       }
@@ -17,7 +23,7 @@ class BaseService {
 
   async fetchAllDataByTable(endpointTable) {
     try {
-      const response = await fetch(`${this.dataUrl}${endpointTable}`);
+      const response = await fetch(`${this.apiUrl}${endpointTable}`);
       if (!response.ok) {
         throw new Error(
           `Failed to fetch all data by table: ${response.statusText}`
@@ -31,7 +37,7 @@ class BaseService {
 
   async fetchDataByID(endpointTable, id) {
     try {
-      const response = await fetch(`${this.dataUrl}${endpointTable}/${id}`);
+      const response = await fetch(`${this.apiUrl}${endpointTable}/${id}`);
       if (!response.ok) {
         throw new Error(
           `Failed to fetch data by id by table: ${response.statusText}`
