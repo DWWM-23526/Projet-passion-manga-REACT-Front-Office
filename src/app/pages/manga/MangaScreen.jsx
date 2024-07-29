@@ -8,6 +8,7 @@ import { useFetchData } from "../../shared/hooks/useFetchData";
 
 const MangaScreen = () => {
   const {data} = useFetchData("/manga");
+  
 
   const [filteredMangas, setFilteredMangas] = useState([]);
 

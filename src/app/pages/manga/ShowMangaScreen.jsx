@@ -1,11 +1,9 @@
 import { Col, Row, Container, Card } from "react-bootstrap";
-
 import Img from "./../../../assets/img/naruto1.jpg";
 import Header from "../../core/layout/header/Header";
-
 import "./showMangaScreen.scss";
 import { useParams } from "react-router-dom";
-import { useFetchDataId } from "../../shared/hooks/useData";
+import { useFetchDataId } from "../../shared/hooks/useFetchData";
 
 const ShowMangaScreen = () => {
   const { idManga } = useParams();
