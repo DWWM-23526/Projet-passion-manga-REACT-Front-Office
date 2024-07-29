@@ -41,6 +41,7 @@ const AuthProvider = ({ children }) => {
   const login = async (credentials) => {
     try {
       const { userData, token } = await authService.login(credentials);
+      console.log( userData, token);
       localStorage.setItem("authToken", token);
       console.log(userData);
 

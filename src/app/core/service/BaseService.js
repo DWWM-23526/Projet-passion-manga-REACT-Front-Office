@@ -1,16 +1,17 @@
 class BaseService {
   constructor() {
     this.apiUrl = import.meta.env.VITE_BASE_URL;
-    this.defaultheaders = {
+    this.defaultHeaders = {
       "Content-Type": "application/json",
     };
   }
 
   async request(endpoint, httpMethod = "GET", body = null, headers = {}) {
     const url = `${this.apiUrl}${endpoint}`;
+    
     const options = {
       method: httpMethod,
-      headers: { ...this.defaultheaders, ...headers },
+      headers: { ...this.defaultHeaders, ...headers },
     };
 
     if (body) {
@@ -23,6 +24,8 @@ class BaseService {
         const errorText = await response.text();
         throw new Error(`Failed to fetch data: ${response.statusText} - ${errorText}`);
       }
+
+      return await response.json();
     } catch (error) {
       throw new Error(`Failed to fetch data: ${error.message}`);
     }
