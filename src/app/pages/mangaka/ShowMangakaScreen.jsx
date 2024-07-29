@@ -3,14 +3,12 @@ import { Card, Col, Container, Row } from "react-bootstrap";
 import Img from "./../../../assets/img/hirohiko_araki.jpg";
 import Header from "../../core/layout/header/Header";
 import { useParams } from "react-router-dom";
-import  { useMangakaId } from "../../shared/hooks/useMangaka";
+import { useFetchDataId } from "../../shared/hooks/useFetchData";
 
 const ShowMangakaScreen = () => {
   const {idMangaka} = useParams();
-  const {data, loading, error} = useMangakaId(idMangaka);
+  const {data} = useFetchDataId(idMangaka);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>
   if (!data) return <p>No data available</p>;
 
   return (

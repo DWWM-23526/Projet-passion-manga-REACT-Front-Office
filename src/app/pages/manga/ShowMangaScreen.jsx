@@ -1,21 +1,14 @@
 import { Col, Row, Container, Card } from "react-bootstrap";
-
 import Img from "./../../../assets/img/naruto1.jpg";
 import Header from "../../core/layout/header/Header";
-
 import "./showMangaScreen.scss";
-// import { useMangaId } from "../../shared/hooks/useManga";
 import { useParams } from "react-router-dom";
-import { useDataId } from "../../shared/hooks/useData";
+import { useFetchDataId } from "../../shared/hooks/useFetchData";
 
 const ShowMangaScreen = () => {
   const { idManga } = useParams();
-  const { data } = useDataId("/manga", idManga);
+  const { data } = useFetchDataId("/manga", idManga);
 
-  // const {data, loading, error} = useMangaId(idManga);
-
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error: {error.message}</p>
   if (!data) return <p>No data available</p>;
 
   return (
