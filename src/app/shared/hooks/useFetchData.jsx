@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import BaseService from "../../core/service/BaseService";
 
-export function useData(endPointTable) {
+export function useFetchData(endPointTable) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export function useData(endPointTable) {
   return { data };
 }
 
-export function useDataId(endPointTable, id) {
+export function useFetchDataId(endPointTable, id) {
   const [data, setData] = useState(null);
 
   useEffect(() => {

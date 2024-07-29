@@ -1,17 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
 import { useEffect, useState } from "react";
-// import {useMangaka} from "../../shared/hooks/useMangaka";
 import { Col, Container, Row } from "react-bootstrap";
 import Cards from "../../shared/components/Card/Card";
 import defaultImg from "../../../assets/img/hirohiko_araki.jpg";
 import Header from "../../core/layout/header/Header";
 import SearchBar from "../../shared/components/Searchbar/SearchBar";
-import { useData } from "../../shared/hooks/useData";
+import { useFetchData } from "../../shared/hooks/useFetchData";
 
 const MangakaScreen = () => {
-  // const { data , loading, error} = useMangaka();
-  const {data} = useData("/mangaka");
+  const {data} = useFetchData("/mangaka");
   const [filteredMangakas, setFilteredMangakas] = useState([]);
 
   useEffect(() => {
@@ -28,9 +26,6 @@ const MangakaScreen = () => {
     );
     setFilteredMangakas(filtered);
   };
-
-  // if (loading) return <p>Loading</p>;
-  // if (error) return <p>Error: {error.message}</p>;
 
   const mangakaList = filteredMangakas.map((mangaka) => (
     <Col
