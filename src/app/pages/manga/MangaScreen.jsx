@@ -53,7 +53,7 @@ const MangaScreen = () => {
 
   return (
     <>
-      <Header title="MANGA" />
+      <Header title="MANGAS" />
 
       <Container className="d-flex text-center">
         <Suspense
@@ -64,7 +64,7 @@ const MangaScreen = () => {
               loading
               speedMultiplier={0.8}
               width={1300}
-              className="mt-5"
+              className="slider"
             />
           }
         >
@@ -78,8 +78,9 @@ const MangaScreen = () => {
 
 export default MangaScreen;
 
-function delay(promise) {
-  return new Promise((resolve) => {
+async function delay(promise) {
+  await new Promise((resolve) => {
     setTimeout(resolve, 1000);
-  }).then(() => promise);
+  });
+  return promise;
 }
