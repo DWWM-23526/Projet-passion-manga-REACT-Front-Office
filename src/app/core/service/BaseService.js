@@ -1,66 +1,39 @@
 class BaseService {
   constructor() {
-    this.dataUrl = import.meta.env.VITE_BASE_URL;
+    this.apiUrl = import.meta.env.VITE_BASE_URL;
+    this.defaultHeaders = {
+      "Content-Type": "application/json",
+    };
   }
 
-  async getData() {
+  async request(endpoint, httpMethod = "GET", body = null, headers = {}) {
+    const url = `${this.apiUrl}${endpoint}`;
+    
+    const options = {
+      method: httpMethod,
+      headers: { ...this.defaultHeaders, ...headers },
+    };
+
+    if (body) {
+      options.body = JSON.stringify(body);
+    }
+
     try {
-      const response = await fetch(`${this.dataUrl}`);
+      const response = await fetch(url, options);
       if (!response.ok) {
-        throw new Error(`Failed to fetch data: ${response.statusText}`);
+        const errorText = await response.text();
+        throw new Error(`Failed to fetch data: ${response.statusText} - ${errorText}`);
       }
-      return response.json();
+
+      return await response.json();
     } catch (error) {
       throw new Error(`Failed to fetch data: ${error.message}`);
     }
   }
 
-  async fetchAllDataByTable(endpointTable) {
-    try {
-      const response = await fetch(`${this.dataUrl}${endpointTable}`);
-      if (!response.ok) {
-        throw new Error(
-          `Failed to fetch all data by table: ${response.statusText}`
-        );
-      }
-      return response.json();
-    } catch (error) {
-      throw new Error(`Failed to fetch all data by table: ${error.message}`);
-    }
+  async fetchData(endpoint, headers) {
+    return this.request(endpoint, "GET", null, headers);
   }
-
-  async fetchDataByID(endpointTable, id) {
-    try {
-      const response = await fetch(`${this.dataUrl}${endpointTable}/${id}`);
-      if (!response.ok) {
-        throw new Error(
-          `Failed to fetch data by id by table: ${response.statusText}`
-        );
-      }
-      return response.json();
-    } catch (error) {
-      throw new Error(`Failed to fetch data by id by table: ${error.message}`);
-    }
-  }
-
-  // async fetchDataIsFavoriteByUser(endpointTable, idManga, idUser) {
-  //   try {
-  //     const response = await fetch(
-  //       `${this.dataUrl}${endpointTable}/${idManga}/${idUser}`
-  //     );
-  //     if (!response.ok) {
-  //       throw new Error(
-  //         `Failed to fetch data favorite by user: ${response.statusText}`
-  //       );
-  //     }
-  //     return response.json();
-  //   } catch (error) {
-  //     throw new Error(
-  //       `Failed to fetch data favorite by user: ${error.message}`
-  //     );
-  //   }
-  // }
-  // TODO : Add different method for use API call
 }
 
 export default BaseService;

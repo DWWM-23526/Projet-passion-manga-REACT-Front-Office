@@ -9,7 +9,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const authService = useMemo(() => new AuthService("http://api-passion-manga/api"), []);
+  const authService = useMemo(() => new AuthService(), []);
 
   useEffect(() => {
     const checkAuthStatus = async () => {
@@ -18,18 +18,17 @@ const AuthProvider = ({ children }) => {
 
         if (token) {
           const user = await authService.validateToken(token);
-          console.log(user);
 
           if (user) {
             setUser(user);
           } else {
+            localStorage.removeItem("authToken");
             setUser(null);
           }
         } else {
           setUser(null);
         }
       } catch (err) {
-        console.log(err);
         setError(err);
       } finally {
         setLoading(false);
@@ -42,9 +41,10 @@ const AuthProvider = ({ children }) => {
   const login = async (credentials) => {
     try {
       const { userData, token } = await authService.login(credentials);
+      console.log( userData, token);
       localStorage.setItem("authToken", token);
       console.log(userData);
-    
+
       setUser(userData);
     } catch (err) {
       console.log(err);

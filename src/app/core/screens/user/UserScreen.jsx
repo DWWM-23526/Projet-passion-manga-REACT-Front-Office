@@ -1,11 +1,10 @@
-import { useContext } from "react";
+import { useAuth } from "../../hooks/useAuth";
+
 import Header from "../../layout/header/Header";
-import AuthContext from "../../contexts/auth/AuthContext";
+
 
 const UserScreen = () => {
-  const { user, loading, error } = useContext(AuthContext);
-
-  console.log(user);
+  const { user, loading, error } = useAuth();
   
   if (loading) {
     return <p>Loading...</p>; 
