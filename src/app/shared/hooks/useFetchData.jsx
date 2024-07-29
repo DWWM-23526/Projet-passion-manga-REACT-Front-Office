@@ -37,8 +37,6 @@ export function useFetchDataId(endPointTable, id) {
   return { data };
 }
 
-// export function useDataFav(endPointTable, idManga, idUser) {
-  
-// }
+
 
 
