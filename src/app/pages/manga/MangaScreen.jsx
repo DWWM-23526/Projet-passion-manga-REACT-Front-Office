@@ -4,10 +4,11 @@ import defaultImg from "../../../assets/img/naruto1.jpg";
 import Header from "../../core/layout/header/Header";
 import SearchBar from "../../shared/components/Searchbar/SearchBar";
 import { useEffect, useState } from "react";
-import { useManga } from "../../shared/hooks/useManga";
+import { useFetchData } from "../../shared/hooks/useFetchData";
 
 const MangaScreen = () => {
-  const { data } = useManga();
+  const {data} = useFetchData("/manga");
+
   const [filteredMangas, setFilteredMangas] = useState([]);
 
   useEffect(() => {
@@ -22,9 +23,6 @@ const MangaScreen = () => {
     );
     setFilteredMangas(filtered);
   };
-
-  // if (loading) return <p>Loading</p>;
-  // if (error) return <p>Error: {error.message}</p>;
 
   const mangaList = filteredMangas.map((manga) => (
     <Col
