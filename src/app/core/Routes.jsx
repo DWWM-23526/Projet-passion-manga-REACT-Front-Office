@@ -43,7 +43,7 @@ const Routing = () => {
           <Route path=":profileID" element={<UserScreen />} />
         </Route>
 
-        <Route pathe="/page_not_found" element={<PageNotFound />} />
+        <Route path="/page_not_found" element={<PageNotFound />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>

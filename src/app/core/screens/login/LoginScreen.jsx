@@ -1,16 +1,16 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useContext, useRef } from "react";
+import { useRef } from "react";
+import { useAuth } from "../../hooks/useAuth";
 
 import Header from "../../layout/header/Header";
 
 import "./loginScreen.scss";
-import AuthContext from "../../contexts/auth/AuthContext";
 
 const LoginScreen = () => {
   const userEmail = useRef(null);
   const userPassword = useRef(null);
-  const { login } = useContext(AuthContext);
+  const { login } = useAuth() ;
 
   const handleSubmit = (e) => {
     e.preventDefault();
