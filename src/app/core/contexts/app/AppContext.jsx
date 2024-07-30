@@ -1,13 +1,15 @@
 import { createContext } from "react";
 
-const AuthContext = createContext({
-  user: null,
+const AppContext = createContext({
+  user: [],
   isAuthenticated: false,
   loading: false,
   error: null,
+  title: "title",
+  setTitle: () => {},
   login: () => {},
   logout: () => {},
 });
 
-export default AuthContext;
+export default AppContext;
 

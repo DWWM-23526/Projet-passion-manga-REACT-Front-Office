@@ -3,34 +3,25 @@ import BaseService from "./BaseService";
 class AuthService extends BaseService {
   
 
-  async validateToken() {
-    try {
-      const token = localStorage.getItem("authToken");
+  async validateToken(token) {
+   
+    const headers = this._prepareHeaders();
 
-      const headers = {};
-
-      if (token) {
-        headers["Authorization"] = `Bearer ${token}`;
-      }
-
-      const response = await this.request(`/validate`, "POST", { token }, headers);
-      return response;
-    } catch (error) {
-      throw new Error(`Failed to validate token: ${error.message}`);
-    }
+    return this._handleRequest({
+      endpoint: "/validate",
+      httpMethod: "POST",
+      body: { token },
+      headers,
+    });
   }
 
   async login(credentials) {
-    try {
-      const response = await this.request(`/login`, "POST", credentials); 
-      console.log(response);
-      return response;
-    } catch (error) {
-      throw new Error(`Failed to login: ${error.message}`);
-    }
+    return this._handleRequest({
+      endpoint: "/login",
+      httpMethod: "POST",
+      body: credentials,
+    });
   }
-
- 
 }
 
 export default AuthService;

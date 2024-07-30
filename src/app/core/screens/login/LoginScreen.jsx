@@ -1,18 +1,24 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { useRef } from "react";
-import { useAuth } from "../../hooks/useAuth";
-
-import Header from "../../layout/header/Header";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { useApp } from "../../hooks/useApp";
 
 import "./loginScreen.scss";
 
 const LoginScreen = () => {
   const userEmail = useRef(null);
   const userPassword = useRef(null);
-  const { login } = useAuth() ;
 
-  const handleSubmit = (e) => {
+  const { login, isAuthenticated } = useApp();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const email = userEmail.current.value;
@@ -23,14 +29,12 @@ const LoginScreen = () => {
     } catch (error) {
       console.error("Failed to login:", error);
     }
-
     userEmail.current.value = "";
     userPassword.current.value = "";
   };
 
   return (
     <>
-      <Header title="CONNEXION" />
       <Container fluid>
         <Row className="justify-content-center p-5">
           <Col md={6} className="d-flex align-items-center">

@@ -1,24 +1,19 @@
 import Routing from "./Routes";
-import NavbarComponent from "./layout/NavbarComponent";
-import Footer from "./layout/Footer";
-import AuthProvider from "./contexts/auth/AuthProvider";
+import AppProvider from "./contexts/app/AppProvider";
 import ApiProvider from "./contexts/api/ApiProvider";
+import BaseLayout from "./layout/BaseLayout";
+import RouteTitleUpdater from "./service/TitleService";
 function App() {
   return (
     <>
-      <ApiProvider>
-        <AuthProvider>
-          <div className="d-flex flex-column min-vh-100">
-            <NavbarComponent />
-            <div className="flex-fill">
-              <main>
-                <Routing />
-              </main>
-            </div>
-            <Footer />
-          </div>
-        </AuthProvider>
-      </ApiProvider>
+      <AppProvider>
+        <ApiProvider>
+          <RouteTitleUpdater/>
+          <BaseLayout>
+            <Routing />
+          </BaseLayout>
+        </ApiProvider>
+      </AppProvider>
     </>
   );
 }

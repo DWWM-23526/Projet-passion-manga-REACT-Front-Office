@@ -1,22 +1,19 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
 
-import AuthContext from "../contexts/auth/AuthContext";
-import NavbarIcone from "./navbarIcon/NavbarIcon";
 
-const NavbarComponent = () => {
-  const { isAuthenticated, user ,logout } = useContext(AuthContext);
+import NavbarIcone from "./NavbarIcon";
+import { useApp } from "../../hooks/useApp";
 
- 
+const NavBar = () => {
+  const { isAuthenticated, user, logout } = useApp();
 
-  
   let profilPart;
   let navPart;
 
   if (isAuthenticated && user) {
     let profileName = user.name;
-    
+
     profilPart = (
       <Nav>
         <NavbarIcone name="Profil" path={`/profil/${profileName}`} />
@@ -57,4 +54,4 @@ const NavbarComponent = () => {
   );
 };
 
-export default NavbarComponent;
+export default NavBar;

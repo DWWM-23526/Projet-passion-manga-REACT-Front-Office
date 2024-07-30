@@ -1,27 +1,16 @@
-import { useAuth } from "../../hooks/useAuth";
-
-import Header from "../../layout/header/Header";
-
+import PageNotFound from "../../../pages/PageNotFound";
+import { useApp } from "../../hooks/useApp";
 
 const UserScreen = () => {
-  const { user, loading, error } = useAuth();
-  
-  if (loading) {
-    return <p>Loading...</p>; 
-  }
+  const { user, setTitle, isAuthenticated } = useApp();
 
-  if (error) {
-    return <p>{`Error: ${error.message}`}</p>;
-  }
+  if (!isAuthenticated) return <PageNotFound/>;
 
-  if (!user) {
-    return <p>User not found or not authenticated</p>; 
-  }
+  setTitle(user.name);
 
   return (
     <>
-      <Header title="PROFILE" />
-      <h1>Welcome, {user.name}</h1>
+      
     </>
   );
 };

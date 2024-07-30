@@ -1,31 +1,16 @@
-
-import { useEffect, useState } from "react";
+import { useFetch } from "../../shared/hooks/useFetch";
 import { Col, Container, Row } from "react-bootstrap";
 import Cards from "../../shared/components/Card/Card";
 import defaultImg from "../../../assets/img/genre-image.webp";
-import Header from "../../core/layout/header/Header";
-import SearchBar from "../../shared/components/Searchbar/SearchBar";
-import { useFetchData } from "../../shared/hooks/useFetchData";
+// import SearchBar from "../../shared/components/Searchbar/SearchBar";
+
+
 
 const TagsScreen = () => {
-  const { data
-   } = useFetchData();
-  const [filteredTags, setFilteredTags] = useState([]);
+ 
+  const { data } = useFetch("/tags");
 
-  useEffect(() => {
-    if (data) {
-      setFilteredTags(data);
-    }
-  }, [data]);
-
-  const handleSearch = (searchTerm) => {
-    const filtered = data.filter((tag) =>
-      tag.tag_name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredTags(filtered);
-  };
-
-  const tagList = filteredTags.map((tag) => (
+  const tagList = data.map((tag) => (
     <Col
       xs={12}
       sm={6}
@@ -45,8 +30,7 @@ const TagsScreen = () => {
 
   return (
     <>
-      <Header title="GENRE" />
-      <SearchBar onSearch={handleSearch} />
+      {/* <SearchBar onSearch={handleSearch} /> */}
       <Container className="d-flex text-center">
         <Row className="g-3 mt-3">{tagList}</Row>
       </Container>

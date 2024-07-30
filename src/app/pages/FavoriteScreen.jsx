@@ -1,35 +1,28 @@
 import { Col, Container, Row } from "react-bootstrap";
-import { cardData } from "../../../data/cardData";
+import { useFetch } from "../shared/hooks/useFetch";
+import { useApp } from "../core/hooks/useApp";
 
-import Header from "../core/layout/header/Header";
 import Cards from "../shared/components/Card/Card";
-import SearchBar from "../shared/components/Searchbar/SearchBar";
+import defaultImg from "../../assets/img/naruto1.jpg";
+import PageNotFound from "./PageNotFound";
 
 const FavoriteScreen = () => {
-  let mangas = cardData;
+  
+  const { user, isAuthenticated } = useApp();
+  const { data } = useFetch(`/users/manga/${user.Id_user}`);
 
-  const mangaList = mangas.map((manga) => (
-    <Col
-      xs={12}
-      sm={6}
-      md={4}
-      lg={3}
-      xl={3}
-      className="d-flex justify-content-evenly size-col"
-      key={manga.id}
-    >
-      <Cards
-        title={manga.title}
-        imageUrl={manga.imgSrc}
-        url={`/manga/${manga.id}`}
-      />
+  if (!isAuthenticated) return <PageNotFound/>;
+
+  
+
+  const mangaList = data.map((manga) => (
+    <Col xs={12} sm={6} md={4} lg={3} xl={3} className="d-flex justify-content-evenly size-col" key={manga.Id_manga}>
+      <Cards title={manga.manga_name} imageUrl={defaultImg} url={`/manga/${manga.Id_manga}`} />
     </Col>
   ));
 
   return (
     <>
-      <Header title="FAVORIS" />
-      <SearchBar />
       <Container className="d-flex text-center">
         <Row className="g-3 mt-3">{mangaList}</Row>
       </Container>

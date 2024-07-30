@@ -2,12 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import AuthService from "../../service/AuthService";
-import AuthContext from "./AuthContext";
+import AppContext from "./AppContext";
 
-const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+const AppProvider = ({ children }) => {
+  const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [title, setTitle] = useState('PASSION MANGAS');
 
   const authService = useMemo(() => new AuthService(), []);
 
@@ -41,13 +42,10 @@ const AuthProvider = ({ children }) => {
   const login = async (credentials) => {
     try {
       const { userData, token } = await authService.login(credentials);
-      console.log( userData, token);
-      localStorage.setItem("authToken", token);
-      console.log(userData);
 
+      localStorage.setItem("authToken", token);
       setUser(userData);
     } catch (err) {
-      console.log(err);
       setError(err);
     }
   };
@@ -66,11 +64,13 @@ const AuthProvider = ({ children }) => {
     isAuthenticated: !!user,
     loading,
     error,
+    title,
+    setTitle,
     login,
     logout,
   };
 
-  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
+  return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>;
 };
 
-export default AuthProvider;
+export default AppProvider;

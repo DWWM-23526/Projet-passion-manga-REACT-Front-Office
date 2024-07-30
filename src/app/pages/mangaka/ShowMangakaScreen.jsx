@@ -1,19 +1,20 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { useFetch } from "../../shared/hooks/useFetch";
+
 
 import Img from "./../../../assets/img/hirohiko_araki.jpg";
-import Header from "../../core/layout/header/Header";
-import { useParams } from "react-router-dom";
-import { useFetchDataId } from "../../shared/hooks/useFetchData";
+
+
 
 const ShowMangakaScreen = () => {
-  const {idMangaka} = useParams();
-  const {data} = useFetchDataId(idMangaka);
+  const { idMangaka } = useParams();
+  const { data } = useFetch(`/mangaka/${idMangaka}`);
 
-  if (!data) return <p>No data available</p>;
 
   return (
     <>
-    <Header title={data.first_name + " " + data.last_name} />
+
     <Container className="my-4">
       <Row>
         <Col xs={12} md={6} className="d-flex justify-content-center align-items-center">

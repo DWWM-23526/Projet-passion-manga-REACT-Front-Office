@@ -1,10 +1,7 @@
 import { createContext } from "react";
 
-//Création contexte
-const ApiContext = createContext(
-  {
-    BaseService: {}
-  }
-);
+const ApiContext = createContext({
+  baseService: {},
+});
 
 export default ApiContext;
