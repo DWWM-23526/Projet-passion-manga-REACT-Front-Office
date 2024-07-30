@@ -1,7 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
-import Header from "../core/layout/header/Header"
+
 
 
 
@@ -10,7 +10,7 @@ const HomeScreen = () => {
     <>
 
     <div>
-    <Header title="BIENVENUE SUR MANGA PASSION" />
+
       <Container>
         <Row>
           <Col>

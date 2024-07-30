@@ -6,10 +6,16 @@ class BaseService {
     };
   }
 
+  _prepareHeaders(headers = {}) {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+    return {...headers };
+  }
+  
   async _handleRequest({ endpoint, httpMethod, body = null, headers = {} }) {
     try {
-
-      console.log(endpoint);
       return await this.request({ endpoint, httpMethod, body, headers });
     } catch (error) {
       throw new Error(`Failed to execute request: ${error.message}`);
@@ -18,11 +24,10 @@ class BaseService {
 
   async request({ endpoint, httpMethod = "GET", body = null, headers = {} }) {
     const url = `${this.apiUrl}${endpoint}`;
-    console.log(endpoint);
-    console.log(url);
     const options = {
       method: httpMethod,
       headers: { ...this.defaultHeaders, ...headers },
+      
     };
 
     if (body) {
@@ -49,7 +54,9 @@ class BaseService {
   }
 
   async fetchData(endpoint, headers = {}) {
-    return this.request({ endpoint, headers });
+
+    const finalHeaders = this._prepareHeaders(headers);
+    return this._handleRequest({ endpoint, headers : finalHeaders });
   }
 }
 

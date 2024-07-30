@@ -1,13 +1,20 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useApp } from "../../hooks/useApp";
+
+import PageNotFound from "../../../pages/PageNotFound";
 
 import './registerScreen.scss'
-import Header from "../../layout/header/Header";
+
+
 
 const RegisterScreen = () => {
+
+  const { isAuthenticated } = useApp();
+  if (isAuthenticated) return <PageNotFound/>;
+
   return (
     <>
-    <Header title="INSCRIPTION" />
       <Container fluid>
         <Row className="justify-content-center p-5">
           <Col md={6} className="d-flex align-items-center">

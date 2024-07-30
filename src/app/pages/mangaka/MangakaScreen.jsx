@@ -1,33 +1,16 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-
-import { useEffect, useState } from "react";
+import { useFetch } from "../../shared/hooks/useFetch";
 import { Col, Container, Row } from "react-bootstrap";
 import Cards from "../../shared/components/Card/Card";
 import defaultImg from "../../../assets/img/hirohiko_araki.jpg";
-import Header from "../../core/layout/header/Header";
-import SearchBar from "../../shared/components/Searchbar/SearchBar";
-import { useFetchData } from "../../shared/hooks/useFetchData";
+
+// import SearchBar from "../../shared/components/Searchbar/SearchBar";
 
 const MangakaScreen = () => {
-  const {data} = useFetchData("/mangaka");
-  const [filteredMangakas, setFilteredMangakas] = useState([]);
+  const { data } = useFetch("/mangaka");
 
-  useEffect(() => {
-    if (data) {
-      setFilteredMangakas(data);
-    }
-  }, [data]);
 
-  const handleSearch = (searchTerm) => {
-    const filtered = data.filter((mangaka) =>
-      (
-        mangaka.first_name.toLowerCase() + mangaka.last_name.toLowerCase()
-      ).includes(searchTerm.toLowerCase())
-    );
-    setFilteredMangakas(filtered);
-  };
-
-  const mangakaList = filteredMangakas.map((mangaka) => (
+  const mangakaList = data.map((mangaka) => (
     <Col
       xs={12}
       sm={6}
@@ -47,8 +30,7 @@ const MangakaScreen = () => {
 
   return (
     <>
-      <Header title="MANGAKA" />
-      <SearchBar onSearch={handleSearch} />
+      {/* <SearchBar onSearch={handleSearch} /> */}
       <Container className="d-flex text-center">
         <Row className="g-3 mt-3">{mangakaList}</Row>
       </Container>
