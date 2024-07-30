@@ -11,16 +11,17 @@ import "./registerScreen.scss";
 
 
 const RegisterScreen = () => {
-
-  const { isAuthenticated } = useApp();
-  if (isAuthenticated) return <PageNotFound/>;
-
   const [formData, setFormData] = useState({
     pseudo: "",
     email: "",
     password: "",
     password2: "",
   });
+
+  const { isAuthenticated } = useApp();
+  if (isAuthenticated) return <PageNotFound/>;
+
+  
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

@@ -14,7 +14,7 @@ const RouteTitleUpdater = () => {
       "/tags": "GENRES",
       "/profil/login": "CONNEXION",
       "/profil/register": "INSCRIPTION",
-      "/favorites": "FAVORIES",
+      "/favorites": "FAVORIS",
       "/page_not_found": "PAGE NOT FOUND",
     };
 
