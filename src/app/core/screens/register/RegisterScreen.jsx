@@ -24,7 +24,7 @@ const RegisterScreen = () => {
       return;
     }
 
-    fetch("/api/faireleroutexD", {
+    fetch("http://api-passion-manga/api/emailConfirms", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
