@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Container, Form } from "react-bootstrap";
+import PropTypes from "prop-types";
 
-import './searchbar.scss';
-// eslint-disable-next-line react/prop-types
+import "./searchbar.scss";
 const SearchBar = ({ onSearch }) => {
   const [search, setSearch] = useState("");
 
@@ -24,5 +24,8 @@ const SearchBar = ({ onSearch }) => {
       </Container>
     </>
   );
+};
+SearchBar.propTypes = {
+  onSearch: PropTypes.func.isRequired,
 };
 export default SearchBar;

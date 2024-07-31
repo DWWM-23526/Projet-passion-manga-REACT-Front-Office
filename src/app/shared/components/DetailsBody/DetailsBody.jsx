@@ -1,4 +1,5 @@
 import { Card } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 const DetailsBody = ({ data, type }) => (
   <Card className="border-0 shadow-lg p-3">
@@ -6,18 +7,32 @@ const DetailsBody = ({ data, type }) => (
       <Card.Title as="h3" className="mb-4">
         <strong>INFORMATION</strong>
       </Card.Title>
-      {type === 'manga' ? (
+      {type === "manga" ? (
         <>
-          <Card.Text><strong>Édition:</strong> {data.edition}</Card.Text>
-          <Card.Text><strong>Nombre de tomes Total:</strong> {data.total_tome_number}</Card.Text>
-          <Card.Text><strong>Année de sortie:</strong> {data.year_release}</Card.Text>
-          <Card.Text><strong>Numéro de tome:</strong> {data.tome_number}</Card.Text>
+          <Card.Text>
+            <strong>Édition:</strong> {data.edition}
+          </Card.Text>
+          <Card.Text>
+            <strong>Nombre de tomes Total:</strong> {data.total_tome_number}
+          </Card.Text>
+          <Card.Text>
+            <strong>Année de sortie:</strong> {data.year_release}
+          </Card.Text>
+          <Card.Text>
+            <strong>Numéro de tome:</strong> {data.tome_number}
+          </Card.Text>
         </>
       ) : (
         <>
-          <Card.Text><strong>Nom:</strong> {data.first_name}</Card.Text>
-          <Card.Text><strong>Prénom:</strong> {data.last_name}</Card.Text>
-          <Card.Text><strong>Naissance:</strong> {data.birthdate}</Card.Text>
+          <Card.Text>
+            <strong>Nom:</strong> {data.first_name}
+          </Card.Text>
+          <Card.Text>
+            <strong>Prénom:</strong> {data.last_name}
+          </Card.Text>
+          <Card.Text>
+            <strong>Naissance:</strong> {data.birthdate}
+          </Card.Text>
         </>
       )}
       <hr className="my-4" />
@@ -25,10 +40,13 @@ const DetailsBody = ({ data, type }) => (
         <strong>DESCRIPTION</strong>
       </Card.Title>
       <Card.Text>
-        <p>{data.texte}</p> 
+        <p>{data.texte}</p>
       </Card.Text>
     </Card.Body>
   </Card>
 );
-
+DetailsBody.propTypes = {
+  data: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  type: PropTypes.string.isRequired,
+};
 export default DetailsBody;
