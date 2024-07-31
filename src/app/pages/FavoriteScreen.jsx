@@ -1,13 +1,14 @@
 import { useApp } from "../core/hooks/useApp";
 import Grid from "../shared/components/Grid/Grid";
 import defaultImg from "../../assets/img/naruto1.jpg";
-import PageNotFound from "./PageNotFound";
+import PageNotFound from "./error/PageNotFound";
 import { lazy } from "react";
 import delay from "../shared/utils/delay";
 
 const CardsPreview = lazy(() =>
   delay(1000, import("../shared/components/Card/Card"))
 );
+
 
 const FavoriteScreen = () => {
   const { user, isAuthenticated } = useApp();
