@@ -3,12 +3,8 @@ import { Link } from "react-router-dom";
 import { useApp } from "../../hooks/useApp";
 import { useState } from "react";
 
-
-import PageNotFound from "../../../pages/PageNotFound";
+import PageNotFound from "../../../pages/error/PageNotFound";
 import "./registerScreen.scss";
-
-
-
 
 const RegisterScreen = () => {
   const [formData, setFormData] = useState({
@@ -19,9 +15,7 @@ const RegisterScreen = () => {
   });
 
   const { isAuthenticated } = useApp();
-  if (isAuthenticated) return <PageNotFound/>;
-
-  
+  if (isAuthenticated) return <PageNotFound />;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
