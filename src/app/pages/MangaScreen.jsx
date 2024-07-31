@@ -1,6 +1,6 @@
-import Grid from "../../shared/components/Grid/Grid";
-import Cards from "../../shared/components/Card/Card";
-import defaultImg from "../../../assets/img/naruto1.jpg";
+import Grid from "../shared/components/Grid/Grid";
+import Cards from "../shared/components/Card/Card";
+import defaultImg from "../../assets/img/naruto1.jpg";
 
 const MangaScreen = () => {
   const getTitle = (item) => item.manga_name;
@@ -11,7 +11,7 @@ const MangaScreen = () => {
       fetchUrl="/manga"
       CardComponent={Cards}
       defaultImg={defaultImg}
-      detailUrl="/manga"
+      detailUrl="/details/manga"
       getTitle={getTitle}
       getId={getId}
     />

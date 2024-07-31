@@ -4,14 +4,13 @@ import HomeScreen from "../pages/HomeScreen";
 import LoginScreen from "./screens/login/LoginScreen";
 import RegisterScreen from "./screens/register/RegisterScreen";
 import UserScreen from "./screens/user/UserScreen";
-import MangaScreen from "../pages/manga/MangaScreen";
-import MangakaScreen from "../pages/mangaka/MangakaScreen";
-import TagsScreen from "../pages/tags/TagsScreen";
+import MangaScreen from "../pages/MangaScreen";
+import MangakaScreen from "../pages/MangakaScreen";
+import TagsScreen from "../pages/TagsScreen";
 import FavoriteScreen from "../pages/FavoriteScreen";
 import PageNotFound from "../pages/PageNotFound";
-import ShowMangaScreen from "../pages/manga/ShowMangaScreen";
-import ShowMangakaScreen from "../pages/mangaka/ShowMangakaScreen";
-import TagsMangaScreen from "../pages/tags/TagsMangaScreen";
+import DetailsScreen from "../pages/DetailsScreen";
+import TagsMangaScreen from "../pages/TagsMangaScreen";
 
 const Routing = () => {
   return (
@@ -19,14 +18,11 @@ const Routing = () => {
       <Routes>
         <Route path="/" element={<HomeScreen />} />
 
-        <Route path="/manga">
-          <Route path="" element={<MangaScreen />} />
-          <Route path=":idManga" element={<ShowMangaScreen />} />
-        </Route>
+        <Route path="/manga" element={<MangaScreen />} />
+        <Route path="/mangaka" element={<MangakaScreen />} />
 
-        <Route path="/mangaka">
-          <Route path="" element={<MangakaScreen />} />
-          <Route path=":idMangaka" element={<ShowMangakaScreen />} />
+        <Route path="/details">
+          <Route path=":type/:id" element={<DetailsScreen />} />
         </Route>
 
         <Route path="/tags">
