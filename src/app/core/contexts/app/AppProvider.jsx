@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 
 import { useEffect, useMemo, useState } from "react";
 import AuthService from "../../service/AuthService";
@@ -8,7 +8,7 @@ const AppProvider = ({ children }) => {
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [title, setTitle] = useState('PASSION MANGAS');
+  const [title, setTitle] = useState("PASSION MANGAS");
 
   const authService = useMemo(() => new AuthService(), []);
 
@@ -70,7 +70,15 @@ const AppProvider = ({ children }) => {
     logout,
   };
 
-  return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
+  );
+};
+AppProvider.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.element,
+  ]),
 };
 
 export default AppProvider;

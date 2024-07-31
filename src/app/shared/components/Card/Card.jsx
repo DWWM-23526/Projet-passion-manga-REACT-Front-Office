@@ -1,8 +1,9 @@
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+
 import "./cards.scss";
 
-// eslint-disable-next-line react/prop-types
 const Cards = ({ title, imageUrl, url }) => {
   return (
     <Card className="card-style text-decoration-none mb-4">
@@ -14,6 +15,11 @@ const Cards = ({ title, imageUrl, url }) => {
       </Link>
     </Card>
   );
+};
+Cards.propTypes = {
+  title: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 export default Cards;

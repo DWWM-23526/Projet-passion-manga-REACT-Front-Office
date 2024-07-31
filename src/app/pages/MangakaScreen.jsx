@@ -1,6 +1,11 @@
 import Grid from "../shared/components/Grid/Grid";
-import Cards from "../shared/components/Card/Card";
 import defaultImg from "../../assets/img/hirohiko_araki.jpg";
+import { lazy } from "react";
+import delay from "../shared/utils/delay";
+
+const CardsPreview = lazy(() =>
+  delay(1000, import("../shared/components/Card/Card"))
+);
 
 const MangakaScreen = () => {
   const getTitle = (item) => `${item.first_name} ${item.last_name}`;
@@ -9,7 +14,7 @@ const MangakaScreen = () => {
   return (
     <Grid
       fetchUrl="/mangaka"
-      CardComponent={Cards}
+      CardComponent={CardsPreview}
       defaultImg={defaultImg}
       detailUrl="/details/mangaka"
       getTitle={getTitle}
