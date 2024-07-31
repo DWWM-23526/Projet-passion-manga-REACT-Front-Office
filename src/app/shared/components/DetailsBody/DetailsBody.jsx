@@ -25,7 +25,7 @@ const DetailsBody = ({ data, type }) => (
         <strong>DESCRIPTION</strong>
       </Card.Title>
       <Card.Text>
-        <p>{data.texte}</p> 
+        {data.texte} 
       </Card.Text>
     </Card.Body>
   </Card>
