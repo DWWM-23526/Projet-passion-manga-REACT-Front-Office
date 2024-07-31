@@ -46,7 +46,7 @@ const DetailsBody = ({ data, type }) => (
   </Card>
 );
 DetailsBody.propTypes = {
-  data: PropTypes.object.isRequired,
-  type: PropTypes.object.isRequired,
+  data: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  type: PropTypes.string.isRequired,
 };
 export default DetailsBody;

@@ -1,6 +1,8 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { useFetch } from "../../hooks/useFetch";
 import PropTypes from "prop-types";
+import { Suspense } from "react";
+import CardLoader from "../Loader/CardLoader";
 
 const Grid = ({
   fetchUrl,
@@ -25,6 +27,9 @@ const Grid = ({
             xl={3}
             className="d-flex justify-content-evenly size-col"
           >
+            <Suspense fallback={
+              <CardLoader/>
+            }>
             <CardComponent
               title={getTitle(item)}
               imageUrl={defaultImg}
@@ -32,6 +37,7 @@ const Grid = ({
                 detailUrl ? `${detailUrl}/${getId(item)}` : `/page_not_found`
               }
             />
+            </Suspense>
           </Col>
         ))}
       </Row>

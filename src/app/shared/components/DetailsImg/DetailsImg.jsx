@@ -14,7 +14,7 @@ const DetailsImg = ({ image }) => (
   </Card>
 );
 DetailsImg.propTypes = {
-  image: PropTypes.object.isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 export default DetailsImg;
