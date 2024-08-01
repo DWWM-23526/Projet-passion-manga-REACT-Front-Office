@@ -8,7 +8,7 @@ import "./registerScreen.scss";
 
 const RegisterScreen = () => {
   const [formData, setFormData] = useState({
-    pseudo: "",
+    name: "",
     email: "",
     password: "",
     password2: "",
@@ -34,11 +34,7 @@ const RegisterScreen = () => {
     } catch (error) {
       console.error("Failed to register:", error);
     }
-    formData.email = "";
-    formData.pseudo = "";
-    formData.password = "";
-    formData.password2 = "";
-
+    setFormData({ name: "", email: "", password: "", password2: "" });
   };
 
   return (
@@ -53,11 +49,11 @@ const RegisterScreen = () => {
                   <Form.Label htmlFor="pseudo">Pseudo:</Form.Label>
                   <Form.Control
                     type="text"
-                    name="pseudo"
+                    name="name"
                     id="pseudo"
                     placeholder="Enter pseudo"
                     required
-                    value={formData.pseudo}
+                    value={formData.name}
                     onChange={handleChange}
                   />
                 </Form.Group>
@@ -90,7 +86,7 @@ const RegisterScreen = () => {
                   <Form.Control
                     type="password"
                     name="password2"
-                    id="pwd"
+                    id="pwd2"
                     placeholder="Confirm your password"
                     required
                     value={formData.password2}
