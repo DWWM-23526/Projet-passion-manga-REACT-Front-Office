@@ -9,6 +9,7 @@ const AppContext = createContext({
   setTitle: () => {},
   login: () => {},
   logout: () => {},
+  register: () => {},
 });
 
 export default AppContext;
