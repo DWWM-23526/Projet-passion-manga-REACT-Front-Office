@@ -14,7 +14,7 @@ const RegisterScreen = () => {
     password2: "",
   });
 
-  const { isAuthenticated } = useApp();
+  const { register, isAuthenticated } = useApp();
   if (isAuthenticated) return <PageNotFound />;
 
   const handleChange = (e) => {
@@ -27,19 +27,18 @@ const RegisterScreen = () => {
       alert("Les mots de passe ne correspondent pas");
       return;
     }
+    delete formData.password2;
+    try {
+      JSON.stringify(formData);
+      register(formData);
+    } catch (error) {
+      console.error("Failed to register:", error);
+    }
+    formData.email = "";
+    formData.pseudo = "";
+    formData.password = "";
+    formData.password2 = "";
 
-    fetch("/api/faireleroutexD", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data); // TODO: Gerer reponse API
-      })
-      .catch((error) => console.error("Error:", error));
   };
 
   return (
