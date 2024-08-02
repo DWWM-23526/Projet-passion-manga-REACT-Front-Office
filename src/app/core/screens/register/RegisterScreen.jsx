@@ -29,8 +29,6 @@ const RegisterScreen = () => {
     }
     delete formData.password2;
     try {
-      // JSON.stringify(formData);
-      console.log(formData);
       register(formData);
     } catch (error) {
       console.error("Failed to register:", error);
