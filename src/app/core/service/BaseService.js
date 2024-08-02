@@ -41,7 +41,6 @@ class BaseService {
         const errorText = await response.text();
         throw new Error(`Failed to fetch data: ${response.status} ${response.statusText} - ${errorText}`);
       }
-
       try {
         return await response.json();
       } catch {

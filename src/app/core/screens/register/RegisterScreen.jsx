@@ -8,13 +8,13 @@ import "./registerScreen.scss";
 
 const RegisterScreen = () => {
   const [formData, setFormData] = useState({
-    pseudo: "",
+    name: "",
     email: "",
     password: "",
     password2: "",
   });
 
-  const { isAuthenticated } = useApp();
+  const { register, isAuthenticated } = useApp();
   if (isAuthenticated) return <PageNotFound />;
 
   const handleChange = (e) => {
@@ -27,19 +27,13 @@ const RegisterScreen = () => {
       alert("Les mots de passe ne correspondent pas");
       return;
     }
-
-    fetch("/api/faireleroutexD", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data); // TODO: Gerer reponse API
-      })
-      .catch((error) => console.error("Error:", error));
+    delete formData.password2;
+    try {
+      register(formData);
+    } catch (error) {
+      console.error("Failed to register:", error);
+    }
+    setFormData({ name: "", email: "", password: "", password2: "" });
   };
 
   return (
@@ -54,11 +48,11 @@ const RegisterScreen = () => {
                   <Form.Label htmlFor="pseudo">Pseudo:</Form.Label>
                   <Form.Control
                     type="text"
-                    name="pseudo"
+                    name="name"
                     id="pseudo"
                     placeholder="Enter pseudo"
                     required
-                    value={formData.pseudo}
+                    value={formData.name}
                     onChange={handleChange}
                   />
                 </Form.Group>
@@ -91,7 +85,7 @@ const RegisterScreen = () => {
                   <Form.Control
                     type="password"
                     name="password2"
-                    id="pwd"
+                    id="pwd2"
                     placeholder="Confirm your password"
                     required
                     value={formData.password2}

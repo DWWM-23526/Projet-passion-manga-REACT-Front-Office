@@ -59,6 +59,14 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  const register = (credentials) => {
+    try {
+      authService.register(credentials);
+    } catch (err) {
+      setError(err);
+    }
+  };
+
   const contextValue = {
     user,
     isAuthenticated: !!user,
@@ -68,6 +76,7 @@ const AppProvider = ({ children }) => {
     setTitle,
     login,
     logout,
+    register,
   };
 
   return (
