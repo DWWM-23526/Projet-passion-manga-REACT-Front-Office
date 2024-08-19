@@ -7,13 +7,18 @@ import ImgMangaka from "./../../assets/img/hirohiko_araki.jpg";
 import ImgManga from "./../../assets/img/naruto1.jpg";
 import DetailsImg from "../shared/components/DetailsImg/DetailsImg";
 import DetailsBody from "../shared/components/DetailsBody/DetailsBody";
+import { useEffect } from "react";
 
 const DetailsScreen = () => {
   const { id, type } = useParams();
   const { data } = useFetch(`/${type}/${id}`);
-
   const { setTitle } = useApp();
-  setTitle(type === "manga" ? data.manga_name : `${data.first_name} ${data.last_name}`);
+  
+  useEffect(() => {
+    if (data) {
+      setTitle(type === "manga" ? data.manga_name : `${data.first_name} ${data.last_name}`);
+    }
+  }, [data, type, setTitle]);
 
   const image = type === "manga" ? ImgManga : ImgMangaka;
 

@@ -1,4 +1,4 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useApi } from "../../core/hooks/useApi";
 
 export function useFetch(endpoint) {
@@ -11,25 +11,25 @@ export function useFetch(endpoint) {
     let isMounted = true;
 
     const fetchData = async () => {
-        setLoading(true);
-        setError(null);
+      setLoading(true);
+      setError(null);
 
-        try {
-            const result = await baseService.fetchData(endpoint);
-            if (isMounted) setData(result);
-        } catch (error) {
-            if (isMounted) setError(error.message);
-        } finally {
-            if (isMounted) setLoading(false);
-        }
+      try {
+        const result = await baseService.fetchData(endpoint);
+        if (isMounted) setData(result);
+      } catch (err) {
+        if (isMounted) setError(err.message || "An unexpected error occurred");
+      } finally {
+        if (isMounted) setLoading(false);
+      }
     };
 
     fetchData();
 
     return () => {
-        isMounted = false;
+      isMounted = false;
     };
-}, [endpoint, baseService]);
+  }, [endpoint, baseService]);
 
-  return { data: data || {}, loading, error }; 
+  return { data, loading, error };
 }
