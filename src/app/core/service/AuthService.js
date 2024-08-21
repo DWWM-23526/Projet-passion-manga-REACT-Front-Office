@@ -25,7 +25,7 @@ class AuthService extends BaseService {
 
   async register(credentials) {
     return this._handleRequest({
-      endpoint: "/sendEmailConfirm",
+      endpoint: "/emailConfirm/sendEmailConfirm",
       httpMethod: "POST",
       body: credentials,
     });
