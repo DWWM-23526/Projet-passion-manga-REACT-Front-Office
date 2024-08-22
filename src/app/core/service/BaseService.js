@@ -9,7 +9,7 @@ class BaseService {
  
   _prepareHeaders(headers = {}) {
     const token = this._getAuthToken();
-    const authHeader = token ? { Authorization: `Bearer ${token}` } : {};
+    const authHeader = token ? { authorization: `Bearer ${token}` } : {};
     return { ...this.defaultHeaders, ...headers, ...authHeader };
   }
 

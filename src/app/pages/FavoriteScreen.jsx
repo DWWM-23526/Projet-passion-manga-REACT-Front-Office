@@ -15,10 +15,10 @@ const FavoriteScreen = () => {
 
   if (!isAuthenticated) return <PageNotFound />;
 
-  const fetchUrl = `/users/manga/${user.Id_user}`;
+  const fetchUrl = `/users/manga/${user.id}`;
 
   const getTitle = (item) => item.manga_name;
-  const getId = (item) => item.Id_manga;
+  const getId = (item) => item.id;
 
   return (
     <Grid
