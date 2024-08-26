@@ -9,7 +9,7 @@ const CardsPreview = lazy(() => delay(1000, import("../shared/components/Card/Ca
 
 const MangaScreen = () => {
   const getTitle = (item) => item.manga_name;
-  const getId = (item) => item.Id_manga;
+  const getId = (item) => item.id;
 
   const [searchTerm, setSearchTerm] = useState("");
 

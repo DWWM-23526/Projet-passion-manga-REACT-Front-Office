@@ -10,7 +10,7 @@ const CardsPreview = lazy(() =>
 
 const TagsScreen = () => {
   const getTitle = (item) => item.tag_name;
-  const getId = (item) => item.Id_tag;
+  const getId = (item) => item.id;
 
   return (
       <Grid
