@@ -1,5 +1,5 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useApp } from "../../hooks/useApp";
 import { useState } from "react";
 
@@ -15,6 +15,8 @@ const RegisterScreen = () => {
   });
 
   const { register, isAuthenticated } = useApp();
+  const navigate = useNavigate();
+
   if (isAuthenticated) return <PageNotFound />;
 
   const handleChange = (e) => {
@@ -30,6 +32,7 @@ const RegisterScreen = () => {
     delete formData.password2;
     try {
       register(formData);
+      navigate("/");
     } catch (error) {
       console.error("Failed to register:", error);
     }
