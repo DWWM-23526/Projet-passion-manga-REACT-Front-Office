@@ -11,6 +11,7 @@ import FavoriteScreen from "../pages/FavoriteScreen";
 import PageNotFound from "../pages/error/PageNotFound";
 import DetailsScreen from "../pages/DetailsScreen";
 import TagsMangaScreen from "../pages/TagsMangaScreen";
+import ConfirmAccountScreen from "./screens/confirmAccount/ConfirmAccountScreen";
 
 const Routing = () => {
   return (
@@ -33,6 +34,7 @@ const Routing = () => {
         <Route path="/favorites" element={<FavoriteScreen />} />
 
         <Route path="/profil">
+          <Route path="/token" element={<ConfirmAccountScreen />} />
           <Route path="login" element={<LoginScreen />} />
           <Route path="logout" element={<LoginScreen />} />
           <Route path="register" element={<RegisterScreen />} />

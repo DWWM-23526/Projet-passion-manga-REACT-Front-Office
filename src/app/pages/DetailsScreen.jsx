@@ -19,6 +19,8 @@ const DetailsScreen = () => {
       setTitle(type === "manga" ? data.manga_name : `${data.first_name} ${data.last_name}`);
     }
   }, [data, type, setTitle]);
+  console.log(data);
+  
 
   const image = type === "manga" ? ImgManga : ImgMangaka;
 
