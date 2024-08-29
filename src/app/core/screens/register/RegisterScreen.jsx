@@ -1,4 +1,4 @@
-import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useApp } from "../../hooks/useApp";
 import { useRef, useState } from "react";
@@ -6,6 +6,9 @@ import { useRef, useState } from "react";
 import PageNotFound from "../../../pages/error/PageNotFound";
 import "./registerScreen.scss";
 import { handlePasswordBlur } from "./utils/handlePasswordBlur";
+import { handleEmailResponse } from "./utils/handleEmailResponse";
+import { validatePasswords } from "./utils/validatePassword";
+import ModalNotification from "../../../shared/components/Modal/ModalNotification";
 
 const RegisterScreen = () => {
   const [formData, setFormData] = useState({
@@ -34,14 +37,17 @@ const RegisterScreen = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.password !== formData.password2) {
-      passwordInputRef.current.classList.add("border-danger", "text-danger");
-      passwordFeedbackRef.current.classList.add("text-danger");
-      passwordFeedbackRef.current.classList.remove("text-success");
-      passwordFeedbackRef.current.innerText =
-        "Les mots de passes ne correspondent pas.";
+    const passwordMatch = validatePasswords(
+      formData.password,
+      formData.password2,
+      passwordInputRef,
+      passwordFeedbackRef
+    );
+
+    if (!passwordMatch) {
       return;
     }
+
     delete formData.password2;
     try {
       register(formData);
@@ -54,28 +60,12 @@ const RegisterScreen = () => {
   const handleEmailBlur = async (e) => {
     try {
       const response = await checkUser(e.target.value);
-      if (response && response.length > 0) {
-        const user = response.find((user) => user.email === e.target.value);
-        if (user) {
-          emailInputRef.current.classList.add("border-danger", "text-danger");
-          emailInputRef.current.classList.remove(
-            "border-success",
-            "text-success"
-          );
-          emailFeedbackRef.current.classList.add("text-danger");
-          emailFeedbackRef.current.classList.remove("text-success");
-          emailFeedbackRef.current.innerText = "Cet email est déjà pris.";
-        } else {
-          emailInputRef.current.classList.remove(
-            "border-danger",
-            "text-danger"
-          );
-          emailInputRef.current.classList.add("border-success", "text-success");
-          emailFeedbackRef.current.classList.remove("text-danger");
-          emailFeedbackRef.current.classList.add("text-success");
-          emailFeedbackRef.current.innerHTML = "&#10003; Email disponible";
-        }
-      }
+      handleEmailResponse(
+        response,
+        emailInputRef,
+        emailFeedbackRef,
+        e.target.value
+      );
     } catch (error) {
       console.error("Erreur lors de la vérification de l'email", error);
     }
@@ -175,17 +165,12 @@ const RegisterScreen = () => {
         </Row>
       </Container>
 
-      <Modal show={showModal} onHide={handleModalClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Enregistrement réussi</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>E-mail envoyé à : {formData.email}</Modal.Body>
-        <Modal.Footer>
-          <Button variant="dark" onClick={handleModalClose}>
-            OK
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <ModalNotification
+        show={showModal}
+        onHide={handleModalClose}
+        title="Enregistrement réussi"
+        message={`E-mail envoyé à : ${formData.email}`}
+      />
     </>
   );
 };

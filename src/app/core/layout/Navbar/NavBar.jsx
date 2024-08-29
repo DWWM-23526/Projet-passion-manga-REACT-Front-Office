@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import NavbarIcone from "./NavbarIcon";
 import { useApp } from "../../hooks/useApp";
 import { useState } from "react";
-import ModalLoginLogout from "../../../shared/components/Modal/ModalLoginLogout";
+import ModalNotification from "../../../shared/components/Modal/ModalNotification";
 
 const NavBar = () => {
   const { isAuthenticated, user, logout } = useApp();
@@ -64,8 +64,9 @@ const NavBar = () => {
         </Container>
       </Navbar>
 
-      <ModalLoginLogout
+      <ModalNotification
         show={showModal}
+        title="Notification"
         onHide={() => setShowModal(false)}
         message={modalMessage}
       />

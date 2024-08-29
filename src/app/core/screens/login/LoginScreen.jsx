@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useApp } from "../../hooks/useApp";
 
 import "./loginScreen.scss";
-import ModalLoginLogout from "../../../shared/components/Modal/ModalLoginLogout";
+import ModalNotification from "../../../shared/components/Modal/ModalNotification";
 
 const LoginScreen = () => {
   const userEmail = useRef(null);
@@ -85,9 +85,10 @@ const LoginScreen = () => {
           </Col>
         </Row>
       </Container>
-      <ModalLoginLogout
+      <ModalNotification
         show={showModal}
         onHide={handleModalClose}
+        title="Notification"
         message={modalMessage}
       />
     </>

@@ -1,11 +1,11 @@
 import { Button, Modal } from "react-bootstrap";
 import PropTypes from "prop-types";
 
-const ModalLoginLogout = ({ show, onHide, message }) => {
+const ModalNotification = ({ show, onHide, title, message }) => {
   return (
     <Modal show={show} onHide={onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Notification</Modal.Title>
+        <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>{message}</Modal.Body>
       <Modal.Footer>
@@ -17,10 +17,11 @@ const ModalLoginLogout = ({ show, onHide, message }) => {
   );
 };
 
-ModalLoginLogout.propTypes = {
+ModalNotification.propTypes = {
   show: PropTypes.bool.isRequired,
   onHide: PropTypes.func.isRequired,
-  message: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  message: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
 };
 
-export default ModalLoginLogout;
+export default ModalNotification;
