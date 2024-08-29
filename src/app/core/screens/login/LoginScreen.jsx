@@ -1,22 +1,27 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useApp } from "../../hooks/useApp";
 
 import "./loginScreen.scss";
+import ModalLoginLogout from "../../../shared/components/Modal/ModalLoginLogout";
 
 const LoginScreen = () => {
   const userEmail = useRef(null);
   const userPassword = useRef(null);
 
   const { login, isAuthenticated } = useApp();
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/");
+      setModalMessage("Connecté avec succès !");
+      setShowModal(true);
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, setModalMessage, setShowModal]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,6 +38,11 @@ const LoginScreen = () => {
     userPassword.current.value = "";
   };
 
+  const handleModalClose = () => {
+    setShowModal(false);
+    navigate("/");
+  };
+
   return (
     <>
       <Container fluid>
@@ -43,7 +53,13 @@ const LoginScreen = () => {
               <Form onSubmit={handleSubmit} className="loginForm">
                 <Form.Group className="mb-3">
                   <Form.Label htmlFor="email">Email:</Form.Label>
-                  <Form.Control type="email" ref={userEmail} name="email" id="email" placeholder="Enter email" />
+                  <Form.Control
+                    type="email"
+                    ref={userEmail}
+                    name="email"
+                    id="email"
+                    placeholder="Enter email"
+                  />
                 </Form.Group>
                 <Form.Group className="mt-4">
                   <Form.Label htmlFor="pwd">Password:</Form.Label>
@@ -69,6 +85,11 @@ const LoginScreen = () => {
           </Col>
         </Row>
       </Container>
+      <ModalLoginLogout
+        show={showModal}
+        onHide={handleModalClose}
+        message={modalMessage}
+      />
     </>
   );
 };
