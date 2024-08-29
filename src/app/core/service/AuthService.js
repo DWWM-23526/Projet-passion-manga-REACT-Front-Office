@@ -1,10 +1,7 @@
 import BaseService from "./BaseService";
 
 class AuthService extends BaseService {
-
-
   async validateToken(token) {
-
     const headers = this._prepareHeaders();
 
     return this._handleRequest({
@@ -31,6 +28,12 @@ class AuthService extends BaseService {
     });
   }
 
+  async checkUser() {
+    return this._handleRequest({
+      endpoint: "/users",
+      httpMethod: "GET",
+    });
+  }
 }
 
 export default AuthService;

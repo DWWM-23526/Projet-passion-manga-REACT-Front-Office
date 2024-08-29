@@ -67,6 +67,15 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  const checkUser = () => {
+    try {
+      const response = authService.checkUser();
+      return response;
+    } catch (err) {
+      setError(err);
+    }
+  };
+
   const contextValue = {
     user,
     isAuthenticated: !!user,
@@ -77,6 +86,7 @@ const AppProvider = ({ children }) => {
     login,
     logout,
     register,
+    checkUser,
   };
 
   return (
