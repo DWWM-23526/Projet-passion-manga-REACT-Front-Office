@@ -1,12 +1,21 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-
 import NavbarIcone from "./NavbarIcon";
 import { useApp } from "../../hooks/useApp";
+import { useState } from "react";
+import ModalLoginLogout from "../../../shared/components/Modal/ModalLoginLogout";
 
 const NavBar = () => {
   const { isAuthenticated, user, logout } = useApp();
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+
+  const handleLogout = () => {
+    logout();
+    setModalMessage("Déconnecté avec succès !");
+    setShowModal(true);
+  };
 
   let profilPart;
   let navPart;
@@ -17,7 +26,11 @@ const NavBar = () => {
     profilPart = (
       <Nav>
         <NavbarIcone name="Profil" path={`/profil/${profileName}`} />
-        <Link onClick={logout} className="nav-Link fs-4 fw-bold m-2 mb-auto" to="/">
+        <Link
+          onClick={handleLogout}
+          className="nav-Link fs-4 fw-bold m-2 mb-auto"
+          to="/"
+        >
           Déconnexion
         </Link>
       </Nav>
@@ -50,6 +63,12 @@ const NavBar = () => {
           {profilPart}
         </Container>
       </Navbar>
+
+      <ModalLoginLogout
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        message={modalMessage}
+      />
     </>
   );
 };
