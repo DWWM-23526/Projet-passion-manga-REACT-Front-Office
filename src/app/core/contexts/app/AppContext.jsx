@@ -10,6 +10,7 @@ const AppContext = createContext({
   login: () => {},
   logout: () => {},
   register: () => {},
+  checkUser: () => {},
 });
 
 export default AppContext;
