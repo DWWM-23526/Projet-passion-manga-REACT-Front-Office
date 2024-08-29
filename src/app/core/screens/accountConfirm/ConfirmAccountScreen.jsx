@@ -11,18 +11,21 @@ const ConfirmAccountScreen = () => {
     if (token) {
       setTitle("Merci pour la création de votre compte !");
     }
-  });
 
-  const data = async () => {
-    const response = await fetch(
-      `http://api-passion-manga/api/emailConfirm/decodeTokenToConfirmAccount/${token}`
-    );
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `http://api-passion-manga/api/emailConfirm/decodeTokenToConfirmAccount/${token}`
+        );
+        await response.json();
+      } catch (err) {
+        console.error("Error fetching data:", err);
+      }
+    };
 
-    return response;
-  };
-
-  const dataReturn = data();
-  console.log(dataReturn);
+    fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Container fluid className="my-4">
@@ -33,7 +36,10 @@ const ConfirmAccountScreen = () => {
           className="d-flex justify-content-center align-items-center"
         >
           <Button className="mt-5 btn-dark">
-            <Link to="/" className="text-white text-decoration-none fw-semibold">
+            <Link
+              to="/"
+              className="text-white text-decoration-none fw-semibold"
+            >
               Revenir a l&apos;accueil
             </Link>
           </Button>
