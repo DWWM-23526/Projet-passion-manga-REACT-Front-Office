@@ -60,7 +60,7 @@ Grid.propTypes = {
   getTitle: PropTypes.func.isRequired,
   CardComponent: PropTypes.elementType.isRequired,
   getId: PropTypes.func.isRequired,
-  searchTerm: PropTypes.string.isRequired,
+  searchTerm: PropTypes.string,
 };
 
 export default Grid;

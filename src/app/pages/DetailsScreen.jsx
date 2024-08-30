@@ -7,14 +7,18 @@ import ImgMangaka from "./../../assets/img/hirohiko_araki.jpg";
 import ImgManga from "./../../assets/img/naruto1.jpg";
 import DetailsImg from "../shared/components/DetailsImg/DetailsImg";
 import DetailsBody from "../shared/components/DetailsBody/DetailsBody";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { FaArrowLeft } from "react-icons/fa";
+import FavButton from "../shared/components/Button/FavButton";
+import AppContext from "../core/contexts/app/AppContext";
 
 const DetailsScreen = () => {
   const { id, type } = useParams();
   const { data } = useFetch(`/${type}/${id}`);
-  const { setTitle } = useApp();
+  const { setTitle  } = useApp();
   const navigate = useNavigate();
+
+  const {isAuthenticated} = useContext(AppContext);
 
   useEffect(() => {
     if (data) {
@@ -37,6 +41,9 @@ const DetailsScreen = () => {
       >
         <FaArrowLeft size={30} />
       </Button>
+      {type === "manga" && isAuthenticated && (
+          <FavButton mangaId={id} />
+      )}
       <Row>
         <Col
           xs={12}

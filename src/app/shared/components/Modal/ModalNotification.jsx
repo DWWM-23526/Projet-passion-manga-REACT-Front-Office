@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 
 const ModalNotification = ({ show, onHide, title, message }) => {
   return (
-    <Modal show={show} onHide={onHide}>
+    <Modal show={show} onHide={onHide} >
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>{message}</Modal.Body>
-      <Modal.Footer>
+      <Modal.Body className="text-center">{message}</Modal.Body>
+      <Modal.Footer className="d-flex justify-content-center">
         <Button variant="primary" onClick={onHide}>
           OK
         </Button>
