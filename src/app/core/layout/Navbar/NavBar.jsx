@@ -66,7 +66,7 @@ const NavBar = () => {
 
       <ModalNotification
         show={showModal}
-        title="Notification"
+        title="Déconnexion"
         onHide={() => setShowModal(false)}
         message={modalMessage}
       />

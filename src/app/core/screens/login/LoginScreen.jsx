@@ -88,7 +88,7 @@ const LoginScreen = () => {
       <ModalNotification
         show={showModal}
         onHide={handleModalClose}
-        title="Notification"
+        title="Connexion"
         message={modalMessage}
       />
     </>
