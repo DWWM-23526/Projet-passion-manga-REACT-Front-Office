@@ -7,9 +7,10 @@ import ModalNotification from "../../../shared/components/Modal/ModalNotificatio
 import { useNavigate } from "react-router-dom";
 import { handlePasswordBlur } from "../register/utils/handlePasswordBlur";
 import { validatePasswords } from "../register/utils/validatePassword";
+import { handleEmailResponse } from "../register/utils/handleEmailResponse";
 
 const UserScreen = () => {
-  const { user, logout, setTitle, isAuthenticated } = useApp();
+  const { user, logout, setTitle, checkUser, isAuthenticated } = useApp();
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [formData, setFormData] = useState({
@@ -21,6 +22,8 @@ const UserScreen = () => {
 
   const navigate = useNavigate();
 
+  const emailInputRef = useRef();
+  const emailFeedbackRef = useRef();
   const passwordInputRef = useRef();
   const passwordFeedbackRef = useRef();
 
@@ -37,6 +40,20 @@ const UserScreen = () => {
       ...formData,
       [name]: value,
     });
+  };
+
+  const handleEmailBlur = async (e) => {
+    try {
+      const response = await checkUser(e.target.value);
+      handleEmailResponse(
+        response,
+        emailInputRef,
+        emailFeedbackRef,
+        e.target.value
+      );
+    } catch (error) {
+      console.error("Erreur lors de la vérification de l'email", error);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -75,6 +92,12 @@ const UserScreen = () => {
     }
   };
 
+  const handleEmailChange = () => {
+    emailInputRef.current.classList.remove("border-danger", "text-danger");
+    emailInputRef.current.classList.remove("border-success", "text-success");
+    emailFeedbackRef.current.innerText = "";
+  };
+
   const handleModalClose = () => {
     setShowModal(false);
     navigate("/");
@@ -105,14 +128,20 @@ const UserScreen = () => {
                 <Form.Group className="mb-3">
                   <Form.Label htmlFor="email">Email :</Form.Label>
                   <Form.Control
+                    ref={emailInputRef}
                     type="email"
                     id="email"
                     name="email"
                     placeholder="Modifiez votre email"
                     value={formData.email}
                     onChange={handleChange}
+                    onBlur={handleEmailBlur}
                     required
                   />
+                  <div
+                    ref={emailFeedbackRef}
+                    className="email-feedback fw-semibold"
+                  ></div>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
@@ -125,7 +154,10 @@ const UserScreen = () => {
                     placeholder="Modifiez votre mot de passe"
                     value={formData.password}
                     onBlur={(e) => handlePasswordBlur(e, passwordFeedbackRef)}
-                    onChange={handleChange}
+                    onChange={(e) => {
+                      handleChange(e);
+                      handleEmailChange(e);
+                    }}
                     required
                   />
                   <div

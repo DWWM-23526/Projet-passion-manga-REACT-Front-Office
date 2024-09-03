@@ -35,7 +35,7 @@ const RegisterScreen = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const passwordMatch = validatePasswords(
       formData.password,
@@ -45,6 +45,13 @@ const RegisterScreen = () => {
     );
 
     if (!passwordMatch) {
+      return;
+    }
+
+    const emailValid = await handleEmailBlur({
+      target: { value: formData.email },
+    });
+    if (!emailValid) {
       return;
     }
 
@@ -60,14 +67,16 @@ const RegisterScreen = () => {
   const handleEmailBlur = async (e) => {
     try {
       const response = await checkUser(e.target.value);
-      handleEmailResponse(
+      const isValid = handleEmailResponse(
         response,
         emailInputRef,
         emailFeedbackRef,
         e.target.value
       );
+      return isValid;
     } catch (error) {
       console.error("Erreur lors de la vérification de l'email", error);
+      return false;
     }
   };
 
