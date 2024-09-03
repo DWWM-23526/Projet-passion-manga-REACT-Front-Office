@@ -1,5 +1,5 @@
 # Passion-Manga-REACT
-  Front END du projet Passion Manga
+  Front END of project Passion Manga
 
 ## Installation
 Install the application dependencies by running:
