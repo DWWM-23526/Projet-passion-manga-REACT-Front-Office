@@ -5,9 +5,9 @@ import { useRef, useState } from "react";
 
 import PageNotFound from "../../../pages/error/PageNotFound";
 import "./registerScreen.scss";
-import { handlePasswordBlur } from "./utils/handlePasswordBlur";
-import { handleEmailResponse } from "./utils/handleEmailResponse";
-import { validatePasswords } from "./utils/validatePassword";
+import { handlePasswordBlur } from "../utils/handlePasswordBlur";
+import { handleEmailResponse } from "../utils/handleEmailResponse";
+import { validatePasswords } from "../utils/validatePassword";
 import ModalNotification from "../../../shared/components/Modal/ModalNotification";
 
 const RegisterScreen = () => {
