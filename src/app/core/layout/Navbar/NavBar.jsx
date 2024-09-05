@@ -47,20 +47,21 @@ const NavBar = () => {
 
   return (
     <>
-      <Navbar>
+      <Navbar expand="lg" className="">
         <Container fluid className="d-flex">
-          <Nav>
-            <Link className="nav-Link fs-2 fw-bold mx-2 pt-1" to="/">
-              PASSION MANGAS
-            </Link>
-          </Nav>
-          <Nav className="me-auto">
-            <NavbarIcone name="Mangas" path="/manga" />
-            <NavbarIcone name="Mangakas" path="/mangaka" />
-            <NavbarIcone name="Genres" path="/tags" />
-            {navPart}
-          </Nav>
-          {profilPart}
+          <Navbar.Brand as={Link} to="/" className="fs-2 fw-bold">
+            PASSION MANGAS
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <NavbarIcone name="Mangas" path="/manga" />
+              <NavbarIcone name="Mangakas" path="/mangaka" />
+              <NavbarIcone name="Genres" path="/tags" />
+              {navPart}
+            </Nav>
+            {profilPart}
+          </Navbar.Collapse>
         </Container>
       </Navbar>
 
