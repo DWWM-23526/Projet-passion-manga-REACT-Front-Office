@@ -1,4 +1,4 @@
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import PageNotFound from "../../../pages/error/PageNotFound";
 import { useApp } from "../../hooks/useApp";
 import { useRef, useState } from "react";
@@ -13,6 +13,7 @@ const UserScreen = () => {
   const { user, logout, setTitle, checkUser, isAuthenticated } = useApp();
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [formData, setFormData] = useState({
     name: user.name,
     email: user.email,
@@ -104,6 +105,37 @@ const UserScreen = () => {
     logout();
   };
 
+  const handleDeleteClick = () => {
+    setShowDeleteModal(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    setShowDeleteModal(false);
+    try {
+      const userId = user.id;
+      const response = await fetch(
+        `http://api-passion-manga/api/users/${userId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.ok) {
+        navigate("/");
+        logout();
+      }
+    } catch (error) {
+      console.error("Erreur de connexion API: ", error);
+    }
+  };
+
+  const handleDeleteCancel = () => {
+    setShowDeleteModal(false);
+  };
+
   return (
     <>
       <Container fluid>
@@ -183,6 +215,13 @@ const UserScreen = () => {
                   Mettre à jour
                 </Button>
               </Form>
+              <Button
+                type="button"
+                className="btn-danger mt-3"
+                onClick={handleDeleteClick}
+              >
+                Supprimer le compte
+              </Button>
             </div>
           </Col>
         </Row>
@@ -194,6 +233,23 @@ const UserScreen = () => {
         title="Modification du profil"
         message={modalMessage}
       />
+
+      <Modal show={showDeleteModal} onHide={handleDeleteCancel}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmation de suppression</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Êtes-vous sûr de vouloir supprimer votre compte ?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleDeleteCancel}>
+            Non
+          </Button>
+          <Button variant="danger" onClick={handleDeleteConfirm}>
+            Oui
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
