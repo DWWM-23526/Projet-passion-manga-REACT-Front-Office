@@ -51,7 +51,6 @@ const RegisterScreen = () => {
     const emailValid = await handleEmailBlur({
       target: { value: formData.email },
     });
-    console.log(emailValid);
 
     if (!emailValid) {
       return;
@@ -75,8 +74,6 @@ const RegisterScreen = () => {
         emailFeedbackRef,
         e.target.value
       );
-      console.log(isValid);
-
       return isValid;
     } catch (error) {
       console.error("Erreur lors de la vérification de l'email", error);
