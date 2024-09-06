@@ -1,3 +1,5 @@
+import { decode } from "html-entities";
+
 class BaseService {
   constructor() {
     this.apiUrl = import.meta.env.VITE_BASE_URL;
@@ -75,13 +77,32 @@ class BaseService {
     try {
       const jsonResponse = await response.json();
       if (jsonResponse.success) {
-        return jsonResponse.data;
+        return this._decodeHtmlEntities(jsonResponse.data);
       } else {
         throw new Error(`API Error: ${jsonResponse.message || "Unknown error"}`);
       }
     } catch (error) {
       throw new Error("Response is not in JSON format");
     }
+  }
+
+  _decodeHtmlEntities(response) {
+
+    if (typeof response === 'string') {
+      return decode(response);
+    }
+    if (Array.isArray(response)) {
+      return response.map(item => this._decodeHtmlEntities(item));
+    }
+    if (typeof response === 'object' && response !== null) {
+      const decodedObject = {};
+      Object.keys(response).forEach(key => {
+        decodedObject[key] = this._decodeHtmlEntities(response[key]);
+      });
+      return decodedObject;
+    }
+    
+    return response;
   }
 
   
