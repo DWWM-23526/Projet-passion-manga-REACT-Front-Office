@@ -25,10 +25,10 @@ const DetailsBody = ({ data, type }) => (
       ) : (
         <>
           <Card.Text>
-            <strong>Nom:</strong> {data.first_name}
+            <strong>Nom:</strong> {data.last_name}
           </Card.Text>
           <Card.Text>
-            <strong>Prénom:</strong> {data.last_name}
+            <strong>Prénom:</strong> {data.first_name}
           </Card.Text>
           <Card.Text>
             <strong>Naissance:</strong> {data.birthdate}
