@@ -14,12 +14,13 @@ const TagsMangaScreen = () => {
 
   const getTitle = (item) => item.manga_name;
   const getId = (item) => item.id;
+  const getImg = (item) => (item.img_manga ? item.img_manga : defaultImg);
 
   return (
     <Grid
       fetchUrl={fetchUrl}
       CardComponent={CardsPreview}
-      defaultImg={defaultImg}
+      getImg={getImg}
       detailUrl="/details/manga"
       getTitle={getTitle}
       getId={getId}

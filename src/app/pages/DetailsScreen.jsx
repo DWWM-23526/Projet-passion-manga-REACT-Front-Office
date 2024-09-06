@@ -15,10 +15,10 @@ import AppContext from "../core/contexts/app/AppContext";
 const DetailsScreen = () => {
   const { id, type } = useParams();
   const { data } = useFetch(`/${type}/${id}`);
-  const { setTitle  } = useApp();
+  const { setTitle } = useApp();
   const navigate = useNavigate();
 
-  const {isAuthenticated} = useContext(AppContext);
+  const { isAuthenticated } = useContext(AppContext);
 
   useEffect(() => {
     if (data) {
@@ -30,8 +30,10 @@ const DetailsScreen = () => {
     }
   }, [data, type, setTitle]);
 
-  const image = type === "manga" ? ImgManga : ImgMangaka;
-
+  const image =
+    type === "manga"
+      ? data?.img_manga || ImgManga
+      : data?.img_mangaka || ImgMangaka;
   return (
     <Container className="my-4">
       <Button
@@ -41,9 +43,7 @@ const DetailsScreen = () => {
       >
         <FaArrowLeft size={30} />
       </Button>
-      {type === "manga" && isAuthenticated && (
-          <FavButton mangaId={id} />
-      )}
+      {type === "manga" && isAuthenticated && <FavButton mangaId={id} />}
       <Row>
         <Col
           xs={12}

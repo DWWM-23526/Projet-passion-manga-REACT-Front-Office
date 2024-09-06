@@ -9,7 +9,6 @@ const CardsPreview = lazy(() =>
   delay(1000, import("../shared/components/Card/Card"))
 );
 
-
 const FavoriteScreen = () => {
   const { user, isAuthenticated } = useApp();
 
@@ -19,12 +18,13 @@ const FavoriteScreen = () => {
 
   const getTitle = (item) => item.manga_name;
   const getId = (item) => item.id;
+  const getImg = (item) => (item.img_manga ? item.img_manga : defaultImg);
 
   return (
     <Grid
       fetchUrl={fetchUrl}
       CardComponent={CardsPreview}
-      defaultImg={defaultImg}
+      getImg={getImg}
       detailUrl="/details/manga"
       getTitle={getTitle}
       getId={getId}

@@ -5,7 +5,7 @@ import { Suspense, useEffect, useState } from "react";
 import CardLoader from "../Loader/CardLoader";
 import { BarLoader } from "react-spinners";
 
-const Grid = ({ searchTerm, fetchUrl, defaultImg, detailUrl, getTitle, CardComponent, getId }) => {
+const Grid = ({ searchTerm, fetchUrl, getImg, detailUrl, getTitle, CardComponent, getId }) => {
   const finalFetchUrl = searchTerm ? `${fetchUrl}/search/${searchTerm}` : fetchUrl;
   const { data, loading, error } = useFetch(finalFetchUrl);
   const [loader, setloader] = useState(false);
@@ -33,6 +33,8 @@ const Grid = ({ searchTerm, fetchUrl, defaultImg, detailUrl, getTitle, CardCompo
   if (error || !data || data.length === 0) {
     return <></>;
   }
+  console.log(data.img_manga);
+  
 
   return (
     <Container>
@@ -42,7 +44,7 @@ const Grid = ({ searchTerm, fetchUrl, defaultImg, detailUrl, getTitle, CardCompo
             <Suspense fallback={<CardLoader />}>
               <CardComponent
                 title={getTitle(item)}
-                imageUrl={defaultImg}
+                imageUrl={getImg(item)}
                 url={detailUrl ? `${detailUrl}/${getId(item)}` : `/page_not_found`}
               />
             </Suspense>
@@ -55,7 +57,7 @@ const Grid = ({ searchTerm, fetchUrl, defaultImg, detailUrl, getTitle, CardCompo
 
 Grid.propTypes = {
   fetchUrl: PropTypes.string.isRequired,
-  defaultImg: PropTypes.string.isRequired,
+  getImg: PropTypes.func.isRequired,
   detailUrl: PropTypes.string.isRequired,
   getTitle: PropTypes.func.isRequired,
   CardComponent: PropTypes.elementType.isRequired,
