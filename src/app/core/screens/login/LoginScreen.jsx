@@ -58,24 +58,24 @@ const LoginScreen = () => {
                     ref={userEmail}
                     name="email"
                     id="email"
-                    placeholder="Enter email"
+                    placeholder="Entrez votre email"
                   />
                 </Form.Group>
                 <Form.Group className="mt-4">
-                  <Form.Label htmlFor="pwd">Password:</Form.Label>
+                  <Form.Label htmlFor="pwd">Mot de passe:</Form.Label>
                   <div className="mt-1 mb-2">
-                    <Link href="#">Mdp oublié ?</Link>
+                    <Link href="#">Mot de passe oublié ?</Link>
                   </div>
                   <Form.Control
                     type="password"
                     ref={userPassword}
                     name="password"
                     id="pwd"
-                    placeholder="Enter password"
+                    placeholder="Entrez votre mot de passe"
                   />
                 </Form.Group>
                 <Button type="submit" className="btn btn-dark btn-block mt-4">
-                  Login
+                  Connexion
                 </Button>
               </Form>
               <div className="mt-3">

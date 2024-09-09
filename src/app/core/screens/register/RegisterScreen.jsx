@@ -106,7 +106,7 @@ const RegisterScreen = () => {
                     type="text"
                     name="name"
                     id="pseudo"
-                    placeholder="Enter pseudo"
+                    placeholder="Entrez votre pseudo"
                     required
                     value={formData.name}
                     onChange={handleChange}
@@ -119,7 +119,7 @@ const RegisterScreen = () => {
                     type="email"
                     name="email"
                     id="email"
-                    placeholder="Enter email"
+                    placeholder="Entrez votre email"
                     required
                     value={formData.email}
                     onChange={(e) => {
@@ -134,13 +134,13 @@ const RegisterScreen = () => {
                   ></div>
                 </Form.Group>
                 <Form.Group className="mt-4">
-                  <Form.Label htmlFor="pwd">Password:</Form.Label>
+                  <Form.Label htmlFor="pwd">Mot de passe:</Form.Label>
                   <Form.Control
                     ref={passwordInputRef}
                     type="password"
                     name="password"
                     id="pwd"
-                    placeholder="Enter password"
+                    placeholder="Entrez votre mot de passe"
                     required
                     value={formData.password}
                     onBlur={(e) => handlePasswordBlur(e, passwordFeedbackRef)}
@@ -152,19 +152,19 @@ const RegisterScreen = () => {
                   ></div>
                 </Form.Group>
                 <Form.Group className="mt-4">
-                  <Form.Label htmlFor="pwd">Confirm Password:</Form.Label>
+                  <Form.Label htmlFor="pwd">Confirmez votre mot de passe :</Form.Label>
                   <Form.Control
                     type="password"
                     name="password2"
                     id="pwd2"
-                    placeholder="Confirm your password"
+                    placeholder="Confirmez votre mot de passe"
                     required
                     value={formData.password2}
                     onChange={handleChange}
                   />
                 </Form.Group>
                 <Button type="submit" className="btn btn-dark btn-block mt-4">
-                  Submit
+                  Envoyer
                 </Button>
               </Form>
               <div className="mt-3">
