@@ -8,9 +8,9 @@ const RouteTitleUpdater = () => {
 
   useEffect(() => {
     const routeTitles = {
-      "/": "PASSIONS MANGAS",
+      "/": "PASSION MANGAS",
       "/manga": "MANGAS",
-      "/mangaka": "MANGAKA",
+      "/mangaka": "MANGAKAS",
       "/tags": "GENRES",
       "/profil/login": "CONNEXION",
       "/profil/register": "INSCRIPTION",
