@@ -17,7 +17,7 @@ const SearchBar = ({ onSearch, searchTerm }) => {
           type="text"
           value={searchTerm}
           onChange={handleInputChange}
-          placeholder="Search..."
+          placeholder="Rechercher..."
           className="form-control my-5 text-center searchBar"
         />
       </Container>

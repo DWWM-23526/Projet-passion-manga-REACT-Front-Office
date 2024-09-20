@@ -64,7 +64,7 @@ const LoginScreen = () => {
                 <Form.Group className="mt-4">
                   <Form.Label htmlFor="pwd">Mot de passe:</Form.Label>
                   <div className="mt-1 mb-2">
-                    <Link href="#">Mot de passe oublié ?</Link>
+                    <Link to="/profil/forgotten">Mot de passe oublié ?</Link>
                   </div>
                   <Form.Control
                     type="password"

@@ -12,6 +12,7 @@ import PageNotFound from "../pages/error/PageNotFound";
 import DetailsScreen from "../pages/DetailsScreen";
 import TagsMangaScreen from "../pages/TagsMangaScreen";
 import ConfirmAccountScreen from "./screens/accountConfirm/ConfirmAccountScreen";
+import ForgottenPasswordScreen from "./screens/forgottenPassword/ForgottenPasswordScreen";
 
 const Routing = () => {
   return (
@@ -40,6 +41,7 @@ const Routing = () => {
           <Route path="logout" element={<LoginScreen />} />
           <Route path="register" element={<RegisterScreen />} />
           <Route path=":profileID" element={<UserScreen />} />
+          <Route path="forgotten" element={<ForgottenPasswordScreen/>}/>
         </Route>
 
         <Route path="/page_not_found" element={<PageNotFound />} />
