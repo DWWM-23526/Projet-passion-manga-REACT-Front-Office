@@ -5,8 +5,6 @@ import { handlePasswordBlur } from "../utils/handlePasswordBlur";
 
 const UpdatePasswordScreen = () => {
     const [formData, setFormData] = useState({
-        name: "",
-        email: "",
         password: "",
         password2: "",
       });
@@ -29,6 +27,12 @@ const UpdatePasswordScreen = () => {
 
         if (!passwordMatch) {
             return;
+        }
+
+        try {
+            
+        } catch (error) {
+            
         }
 
         delete formData.password2;

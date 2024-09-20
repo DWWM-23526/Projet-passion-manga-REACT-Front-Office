@@ -28,6 +28,14 @@ class AuthService extends BaseService {
     });
   }
 
+  async forgottenPassword(credentials) {
+    return this._handleRequest({
+      endpoint: "/emailConfirm/sendEmailToResetPassword",
+      httpMethod: "POST",
+      body: credentials,
+    });
+  }
+
   async checkUser() {
     return this._handleRequest({
       endpoint: "/users",

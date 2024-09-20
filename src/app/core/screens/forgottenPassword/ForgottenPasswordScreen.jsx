@@ -8,19 +8,26 @@ import { useState } from "react";
 const ForgottenPasswordScreen = () => {
     const {setTitle} = useApp();
     const navigate = useNavigate();
+
+    const [formData, setFormData] = useState({
+        email: "",
+      });
     
     const [showModal, setShowModal] = useState(false);
     const [modalMessage, setModalMessage] = useState("");
+
+    const {forgottenPassword} = useApp();
     
     setTitle("OUBLIE D'EMAIL");
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+      };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(
-                `http://api-passion-manga/api/emailConfirm/` //TODO Ajouter l'endpoint d'appel API
-            )
-            await response.json();
+            forgottenPassword(formData);
             setModalMessage("E-mail envoyé !");
             setShowModal(true);
         } catch (err) {
@@ -55,6 +62,8 @@ const ForgottenPasswordScreen = () => {
                             id="email"
                             placeholder="Entrez votre email"
                             required
+                            value={formData.email}
+                            onChange={handleChange}
                             />
                         </Form.Group>
                         <Button type="submit" className="btn btn-dark btn-block mt-4">
