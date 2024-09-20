@@ -1,9 +1,38 @@
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { useRef, useState } from "react";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { validatePasswords } from "../utils/validatePassword";
+import { handlePasswordBlur } from "../utils/handlePasswordBlur";
 
 const UpdatePasswordScreen = () => {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        password: "",
+        password2: "",
+      });
+
+    const passwordInputRef = useRef();
+    const passwordFeedbackRef = useRef();
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+      };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const passwordMatch = validatePasswords(
+            formData.password,
+            formData.password2,
+            passwordInputRef,
+            passwordFeedbackRef
+        );
+
+        if (!passwordMatch) {
+            return;
+        }
+
+        delete formData.password2;
+
     }
 
     return (
@@ -21,6 +50,9 @@ const UpdatePasswordScreen = () => {
                             id="pwd"
                             placeholder="Entrez votre mot de passe"
                             required
+                            value={formData.password}
+                            onChange={handleChange}
+                            onBlur={(e) => handlePasswordBlur(e, passwordFeedbackRef)}
                             />
                             <div
                     ref={passwordFeedbackRef}
@@ -35,6 +67,8 @@ const UpdatePasswordScreen = () => {
                     id="pwd2"
                     placeholder="Confirmez votre mot de passe"
                     required
+                    value={formData.password2}
+                    onChange={handleChange}
                     />
                 </Form.Group>
                 <Button type="submit" className="btn btn-dark btn-block mt-4">

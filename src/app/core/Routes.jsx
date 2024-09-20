@@ -13,6 +13,7 @@ import DetailsScreen from "../pages/DetailsScreen";
 import TagsMangaScreen from "../pages/TagsMangaScreen";
 import ConfirmAccountScreen from "./screens/accountConfirm/ConfirmAccountScreen";
 import ForgottenPasswordScreen from "./screens/forgottenPassword/ForgottenPasswordScreen";
+import UpdatePasswordScreen from "./screens/updatePassword/UpdatePasswordScreen";
 
 const Routing = () => {
   return (
@@ -42,6 +43,7 @@ const Routing = () => {
           <Route path="register" element={<RegisterScreen />} />
           <Route path=":profileID" element={<UserScreen />} />
           <Route path="forgotten" element={<ForgottenPasswordScreen/>}/>
+          <Route path="updatePassword" element={<UpdatePasswordScreen/>}/>
         </Route>
 
         <Route path="/page_not_found" element={<PageNotFound />} />

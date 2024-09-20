@@ -94,7 +94,7 @@ const RegisterScreen = () => {
 
   return (
     <>
-      <Container fluid>
+      <Container fluid className="my-4">
         <Row className="justify-content-center p-5">
           <Col md={6} className="d-flex align-items-center">
             <h2 className="text-center mb-4 me-5">Enregistrez vous</h2>
