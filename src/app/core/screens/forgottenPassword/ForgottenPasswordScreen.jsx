@@ -15,6 +15,7 @@ const ForgottenPasswordScreen = () => {
     
     const [showModal, setShowModal] = useState(false);
     const [modalMessage, setModalMessage] = useState("");
+    const [isError, setIsError] = useState(false);
 
     const {forgottenPassword} = useApp();
     
@@ -27,12 +28,15 @@ const ForgottenPasswordScreen = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            forgottenPassword(formData);
+            await forgottenPassword(formData);
             setModalMessage("E-mail envoyé !");
-            setShowModal(true);
+            setIsError(false);
         } catch (err) {
             console.error("Error fetching data:", err);
+            setModalMessage("Une erreur s'est produite. Veuillez réessayer.");
+            setIsError(true);
         }
+        setShowModal(true);
     }
 
     const handleModalClose = () => {
@@ -77,7 +81,7 @@ const ForgottenPasswordScreen = () => {
         <ModalNotification
         show={showModal}
         onHide={handleModalClose}
-        title="Envoi d'email"
+        title={isError ? "Erreur" : "Envoi d'email"}
         message={modalMessage}
         />
     </>
