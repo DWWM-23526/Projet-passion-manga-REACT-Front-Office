@@ -36,11 +36,11 @@ class AuthService extends BaseService {
     });
   }
 
-  async updatePassword(credentials) {
+  async updatePassword({ password, resetToken }) {
     return this._handleRequest({
-      endpoint: "/reset-password",
+      endpoint: `/reset-password/${resetToken}`,
       httpMethod: "POST",
-      body: credentials,
+      body: { password },
     });
   }
 

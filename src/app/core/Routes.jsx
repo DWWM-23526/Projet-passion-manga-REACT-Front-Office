@@ -36,14 +36,17 @@ const Routing = () => {
         <Route path="/favorites" element={<FavoriteScreen />} />
 
         <Route path="/account/:token" element={<ConfirmAccountScreen />} />
+        <Route
+          path="/reset-password/:resetToken"
+          element={<UpdatePasswordScreen />}
+        />
 
         <Route path="/profil">
           <Route path="login" element={<LoginScreen />} />
           <Route path="logout" element={<LoginScreen />} />
           <Route path="register" element={<RegisterScreen />} />
           <Route path=":profileID" element={<UserScreen />} />
-          <Route path="forgotten" element={<ForgottenPasswordScreen/>}/>
-          <Route path="updatePassword" element={<UpdatePasswordScreen/>}/>
+          <Route path="forgotten" element={<ForgottenPasswordScreen />} />
         </Route>
 
         <Route path="/page_not_found" element={<PageNotFound />} />

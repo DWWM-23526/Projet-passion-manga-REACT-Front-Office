@@ -4,10 +4,11 @@ import { validatePasswords } from "../utils/validatePassword";
 import { handlePasswordBlur } from "../utils/handlePasswordBlur";
 import { useApp } from "../../hooks/useApp";
 import ModalNotification from "../../../shared/components/Modal/ModalNotification";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdatePasswordScreen = () => {
   const { updatePassword } = useApp();
+  const { resetToken } = useParams();
   const [formData, setFormData] = useState({
     password: "",
     password2: "",
@@ -40,8 +41,11 @@ const UpdatePasswordScreen = () => {
     }
 
     try {
-      delete formData.password2;
-      updatePassword({ password: formData.password });
+      const payload = {
+        password: formData.password,
+        resetToken: resetToken,
+      };
+      updatePassword(payload);
       setModalMessage("Mot de passe mis à jour avec succès !");
       setIsError(false);
     } catch (error) {
@@ -71,7 +75,7 @@ const UpdatePasswordScreen = () => {
             <div className="form-register p-5 text-center">
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
-                  <Form.Label htmlFor="pwd">Mot de passe:</Form.Label>
+                  <Form.Label htmlFor="new_password">Mot de passe:</Form.Label>
                   <Form.Control
                     type="password"
                     name="password"
