@@ -17,6 +17,7 @@ const ForgottenPasswordScreen = () => {
   const [modalMessage, setModalMessage] = useState("");
   const [isError, setIsError] = useState(false);
 
+
   setTitle("OUBLIE D'EMAIL");
 
   const handleChange = (e) => {

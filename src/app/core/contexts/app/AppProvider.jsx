@@ -76,19 +76,17 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  const forgottenPassword = () => {
+  const forgottenPassword = (credentials) => {
     try {
-      const response = authService.forgottenPassword();
-      return response;
+      authService.forgottenPassword(credentials);
     } catch (err) {
       setError(err);
     }
   };
 
-  const updatePassword = () => {
+  const updatePassword = (credentials) => {
     try {
-      const response = authService.updatePassword();
-      return response;
+      authService.updatePassword(credentials);
     } catch (err) {
       setError(err);
     }
@@ -106,7 +104,7 @@ const AppProvider = ({ children }) => {
     register,
     checkUser,
     forgottenPassword,
-    updatePassword
+    updatePassword,
   };
 
   return (
