@@ -7,86 +7,91 @@ import ModalNotification from "../../../shared/components/Modal/ModalNotificatio
 import { useNavigate } from "react-router-dom";
 
 const UpdatePasswordScreen = () => {
-    const {updatePassword} = useApp();
-    const [formData, setFormData] = useState({
-        password: "",
-        password2: "",
-      });
+  const { updatePassword } = useApp();
+  const [formData, setFormData] = useState({
+    password: "",
+    password2: "",
+  });
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const [showModal, setShowModal] = useState(false);
-    const [modalMessage, setModalMessage] = useState("");
-    const [isError, setIsError] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [isError, setIsError] = useState(false);
 
-    const passwordInputRef = useRef();
-    const passwordFeedbackRef = useRef();
+  const passwordInputRef = useRef();
+  const passwordFeedbackRef = useRef();
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-      };
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const passwordMatch = validatePasswords(
-            formData.password,
-            formData.password2,
-            passwordInputRef,
-            passwordFeedbackRef
-        );
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const passwordMatch = validatePasswords(
+      formData.password,
+      formData.password2,
+      passwordInputRef,
+      passwordFeedbackRef
+    );
 
-        if (!passwordMatch) {
-            return;
-        }
-
-        try {
-            delete formData.password2;
-            await updatePassword({ password: formData.password });
-            setModalMessage("Mot de passe mis à jour avec succès !");
-            setIsError(false);
-        } catch (error) {
-            console.error("Error updating password:", error);
-            setModalMessage("Une erreur s'est produite lors de la mise à jour du mot de passe.");
-            setIsError(true);
-        }
-
-        setShowModal(true);
-
+    if (!passwordMatch) {
+      return;
     }
 
-    const handleModalClose = () => {
-        setShowModal(false);
-        navigate('/');
+    try {
+      delete formData.password2;
+      await updatePassword({ password: formData.password });
+      setModalMessage("Mot de passe mis à jour avec succès !");
+      setIsError(false);
+    } catch (error) {
+      console.error("Error updating password:", error);
+      setModalMessage(
+        "Une erreur s'est produite lors de la mise à jour du mot de passe."
+      );
+      setIsError(true);
     }
 
-    return (
-        <>
-        <Container fluid className="my-4">
-            <Row className="justify-content-center p-5">
-                <Col md={6} className="d-flex align-items-center">
-                <h2 className="text-center mb-4 me-5">Modifiez votre mot de passe</h2>
-                <div className="form-register p-5 text-center">
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group className="mb-3">
-                            <Form.Label htmlFor="pwd">Mot de passe:</Form.Label>
-                            <Form.Control
-                            type="password"
-                            name="password"
-                            id="pwd"
-                            placeholder="Entrez votre mot de passe"
-                            required
-                            value={formData.password}
-                            onChange={handleChange}
-                            onBlur={(e) => handlePasswordBlur(e, passwordFeedbackRef)}
-                            />
-                            <div
+    setShowModal(true);
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false);
+    navigate("/");
+  };
+
+  return (
+    <>
+      <Container fluid className="my-4">
+        <Row className="justify-content-center p-5">
+          <Col md={6} className="d-flex align-items-center">
+            <h2 className="text-center mb-4 me-5">
+              Modifiez votre mot de passe
+            </h2>
+            <div className="form-register p-5 text-center">
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3">
+                  <Form.Label htmlFor="pwd">Mot de passe:</Form.Label>
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    id="pwd"
+                    placeholder="Entrez votre mot de passe"
+                    required
+                    value={formData.password}
+                    onChange={handleChange}
+                    onBlur={(e) => handlePasswordBlur(e, passwordFeedbackRef)}
+                  />
+                  <div
                     ref={passwordFeedbackRef}
                     className="password-feedback mt-1 fw-semibold"
-                    ></div>
-                        </Form.Group>
-                        <Form.Group className="mt-4">
-                    <Form.Label htmlFor="pwd">Confirmez votre mot de passe :</Form.Label>
-                    <Form.Control
+                  ></div>
+                </Form.Group>
+                <Form.Group className="mt-4">
+                  <Form.Label htmlFor="pwd">
+                    Confirmez votre mot de passe :
+                  </Form.Label>
+                  <Form.Control
                     type="password"
                     name="password2"
                     id="pwd2"
@@ -94,24 +99,24 @@ const UpdatePasswordScreen = () => {
                     required
                     value={formData.password2}
                     onChange={handleChange}
-                    />
+                  />
                 </Form.Group>
                 <Button type="submit" className="btn btn-dark btn-block mt-4">
-                    Envoyer
+                  Envoyer
                 </Button>
-                    </Form>
-                </div>
-                </Col>
-            </Row>
-        </Container>
-        <ModalNotification
+              </Form>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+      <ModalNotification
         show={showModal}
         onHide={handleModalClose}
         title={isError ? "Erreur" : "Succès"}
         message={modalMessage}
-        />
-        </>
-    )
-}
+      />
+    </>
+  );
+};
 
 export default UpdatePasswordScreen;

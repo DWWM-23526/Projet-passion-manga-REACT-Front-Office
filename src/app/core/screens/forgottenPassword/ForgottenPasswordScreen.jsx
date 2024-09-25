@@ -6,86 +6,89 @@ import ModalNotification from "../../../shared/components/Modal/ModalNotificatio
 import { useState } from "react";
 
 const ForgottenPasswordScreen = () => {
-    const {setTitle} = useApp();
-    const navigate = useNavigate();
+  const { setTitle } = useApp();
+  const navigate = useNavigate();
 
-    const [formData, setFormData] = useState({
-        email: "",
-      });
-    
-    const [showModal, setShowModal] = useState(false);
-    const [modalMessage, setModalMessage] = useState("");
-    const [isError, setIsError] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+  });
 
-    const {forgottenPassword} = useApp();
-    
-    setTitle("OUBLIE D'EMAIL");
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [isError, setIsError] = useState(false);
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-      };
+  const { forgottenPassword } = useApp();
+  console.log(formData);
+  
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            await forgottenPassword(formData);
-            setModalMessage("E-mail envoyé !");
-            setIsError(false);
-        } catch (err) {
-            console.error("Error fetching data:", err);
-            setModalMessage("Une erreur s'est produite. Veuillez réessayer.");
-            setIsError(true);
-        }
-        setShowModal(true);
+  setTitle("OUBLIE D'EMAIL");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await forgottenPassword(formData);
+      setModalMessage("E-mail envoyé !");
+      setIsError(false);
+    } catch (err) {
+      console.error("Error fetching data:", err);
+      setModalMessage("Une erreur s'est produite. Veuillez réessayer.");
+      setIsError(true);
     }
+    setShowModal(true);
+  };
 
-    const handleModalClose = () => {
-        setShowModal(false);
-        navigate("/");
-    }
+  const handleModalClose = () => {
+    setShowModal(false);
+    navigate("/");
+  };
 
-    return (
+  return (
     <>
-        <Container fluid className="my-4">
-                <Button
-                    variant="link"
-                    onClick={() => navigate(-1)}
-                    className=" text-decoration-none">
-                    <FaArrowLeft size={30} />
+      <Container fluid className="my-4">
+        <Button
+          variant="link"
+          onClick={() => navigate(-1)}
+          className=" text-decoration-none"
+        >
+          <FaArrowLeft size={30} />
+        </Button>
+        <Row className="justify-content-center p-5">
+          <Col md={6} className="d-flex align-items-center">
+            <h2 className="text-center mb-4 me-5">Renseignez votre e-mail</h2>
+            <div className="form-login">
+              <Form onSubmit={handleSubmit} className="p-5 text-center">
+                <Form.Group className="mb-3">
+                  <Form.Label htmlFor="email">Email:</Form.Label>
+                  <Form.Control
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Entrez votre email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Button type="submit" className="btn btn-dark btn-block mt-4">
+                  Envoyer
                 </Button>
-            <Row className="justify-content-center p-5">
-                <Col md={6} className="d-flex align-items-center">
-                    <h2 className="text-center mb-4 me-5">Renseignez votre e-mail</h2>
-                    <div className="form-login">
-                    <Form onSubmit={handleSubmit} className="p-5 text-center">
-                        <Form.Group className="mb-3">
-                            <Form.Label htmlFor="email">Email:</Form.Label>
-                            <Form.Control
-                            type="email"
-                            name="email"
-                            id="email"
-                            placeholder="Entrez votre email"
-                            required
-                            value={formData.email}
-                            onChange={handleChange}
-                            />
-                        </Form.Group>
-                        <Button type="submit" className="btn btn-dark btn-block mt-4">
-                            Envoyer
-                        </Button>
-                    </Form>
-                    </div>
-                </Col>
-            </Row>
-        </Container>
-        <ModalNotification
+              </Form>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+      <ModalNotification
         show={showModal}
         onHide={handleModalClose}
         title={isError ? "Erreur" : "Envoi d'email"}
         message={modalMessage}
-        />
+      />
     </>
-    );
-}
+  );
+};
 
 export default ForgottenPasswordScreen;

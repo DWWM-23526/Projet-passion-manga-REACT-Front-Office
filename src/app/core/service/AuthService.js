@@ -22,7 +22,7 @@ class AuthService extends BaseService {
 
   async register(credentials) {
     return this._handleRequest({
-      endpoint: "/emailConfirm/sendEmailConfirm", // TODO ADD endpoint to API
+      endpoint: "/emailConfirm/sendEmailConfirm",
       httpMethod: "POST",
       body: credentials,
     });
@@ -30,7 +30,7 @@ class AuthService extends BaseService {
 
   async forgottenPassword(credentials) {
     return this._handleRequest({
-      endpoint: "/emailConfirm/sendEmailToResetPassword",// TODO ADD endpoint to API
+      endpoint: "/forgot-password",
       httpMethod: "POST",
       body: credentials,
     });
@@ -38,8 +38,8 @@ class AuthService extends BaseService {
 
   async updatePassword(credentials) {
     return this._handleRequest({
-      endpoint: "/emailConfirm/updatePasswordAfterClick",
-      httpMethod: "UPDATE",
+      endpoint: "/reset-password",
+      httpMethod: "POST",
       body: credentials,
     });
   }
