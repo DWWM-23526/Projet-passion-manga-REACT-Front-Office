@@ -8,18 +8,15 @@ class BaseService {
     };
   }
 
- 
   _prepareHeaders(headers = {}) {
     const token = this._getAuthToken();
     const authHeader = token ? { authorization: `Bearer ${token}` } : {};
     return { ...this.defaultHeaders, ...headers, ...authHeader };
   }
 
-
   _getAuthToken() {
     return localStorage.getItem("authToken");
   }
-
 
   async _handleRequest({ endpoint, httpMethod, body = null, headers = {} }) {
     try {
@@ -29,7 +26,6 @@ class BaseService {
     }
   }
 
-
   async request({ endpoint, httpMethod = "GET", body = null, headers = {} }) {
     const url = this._buildUrl(endpoint);
     const options = this._buildRequestOptions(httpMethod, body, headers);
@@ -38,11 +34,9 @@ class BaseService {
     return this._parseResponse(response);
   }
 
- 
   _buildUrl(endpoint) {
     return `${this.apiUrl}${endpoint}`;
   }
-
 
   _buildRequestOptions(httpMethod, body, headers) {
     const options = {
@@ -57,13 +51,14 @@ class BaseService {
     return options;
   }
 
-
   async _fetchData(url, options) {
     try {
       const response = await fetch(url, options);
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(`Failed to fetch data: ${response.status} ${response.statusText} - ${errorText}`);
+        throw new Error(
+          `Failed to fetch data: ${response.status} ${response.statusText} - ${errorText}`
+        );
       }
       return response;
     } catch (error) {
@@ -72,40 +67,39 @@ class BaseService {
     }
   }
 
-  
   async _parseResponse(response) {
     try {
       const jsonResponse = await response.json();
       if (jsonResponse.success) {
         return this._decodeHtmlEntities(jsonResponse.data);
       } else {
-        throw new Error(`API Error: ${jsonResponse.message || "Unknown error"}`);
+        throw new Error(
+          `API Error: ${jsonResponse.message || "Unknown error"}`
+        );
       }
     } catch (error) {
-      throw new Error("Response is not in JSON format coucou");
+      throw new Error("Response is not in JSON format");
     }
   }
 
   _decodeHtmlEntities(response) {
-
-    if (typeof response === 'string') {
+    if (typeof response === "string") {
       return decode(response);
     }
     if (Array.isArray(response)) {
-      return response.map(item => this._decodeHtmlEntities(item));
+      return response.map((item) => this._decodeHtmlEntities(item));
     }
-    if (typeof response === 'object' && response !== null) {
+    if (typeof response === "object" && response !== null) {
       const decodedObject = {};
-      Object.keys(response).forEach(key => {
+      Object.keys(response).forEach((key) => {
         decodedObject[key] = this._decodeHtmlEntities(response[key]);
       });
       return decodedObject;
     }
-    
+
     return response;
   }
 
-  
   async fetchData(endpoint, headers = {}) {
     return this._handleRequest({ endpoint, headers });
   }
