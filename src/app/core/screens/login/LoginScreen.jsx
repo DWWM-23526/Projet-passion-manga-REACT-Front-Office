@@ -1,6 +1,6 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useApp } from "../../hooks/useApp";
 
 import "./loginScreen.scss";
@@ -10,18 +10,12 @@ const LoginScreen = () => {
   const userEmail = useRef(null);
   const userPassword = useRef(null);
 
-  const { login, isAuthenticated } = useApp();
+  const { login } = useApp();
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
+  const [isError, setIsError] = useState(false);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      setModalMessage("Connecté avec succès !");
-      setShowModal(true);
-    }
-  }, [isAuthenticated, setModalMessage, setShowModal]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,9 +25,14 @@ const LoginScreen = () => {
 
     try {
       login({ email, password });
+      setModalMessage("Connecté avec succès !");
+      setIsError(false);
     } catch (error) {
       console.error("Failed to login:", error);
+      setModalMessage("Une erreur s'est produite. Veuillez réessayer.");
+      setIsError(true);
     }
+    setShowModal(true);
     userEmail.current.value = "";
     userPassword.current.value = "";
   };
@@ -88,7 +87,7 @@ const LoginScreen = () => {
       <ModalNotification
         show={showModal}
         onHide={handleModalClose}
-        title="Connexion"
+        title={isError ? "Erreur" : "Connexion"}
         message={modalMessage}
       />
     </>
