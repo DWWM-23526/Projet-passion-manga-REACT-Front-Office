@@ -11,6 +11,8 @@ const AppContext = createContext({
   logout: () => {},
   register: () => {},
   checkUser: () => {},
+  forgottenPassword: () => {},
+  updatePassword: () => {},
 });
 
 export default AppContext;

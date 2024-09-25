@@ -28,6 +28,22 @@ class AuthService extends BaseService {
     });
   }
 
+  async forgottenPassword(credentials) {
+    return this._handleRequest({
+      endpoint: "/forgot-password",
+      httpMethod: "POST",
+      body: credentials,
+    });
+  }
+
+  async updatePassword({ password, resetToken }) {
+    return this._handleRequest({
+      endpoint: `/reset-password/${resetToken}`,
+      httpMethod: "POST",
+      body: { password },
+    });
+  }
+
   async checkUser() {
     return this._handleRequest({
       endpoint: "/users",

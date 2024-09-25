@@ -76,6 +76,22 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  const forgottenPassword = (credentials) => {
+    try {
+      authService.forgottenPassword(credentials);
+    } catch (err) {
+      setError(err);
+    }
+  };
+
+  const updatePassword = (credentials) => {
+    try {
+      authService.updatePassword(credentials);
+    } catch (err) {
+      setError(err);
+    }
+  };
+
   const contextValue = {
     user,
     isAuthenticated: !!user,
@@ -87,6 +103,8 @@ const AppProvider = ({ children }) => {
     logout,
     register,
     checkUser,
+    forgottenPassword,
+    updatePassword,
   };
 
   return (

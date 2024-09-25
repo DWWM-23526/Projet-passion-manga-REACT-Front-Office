@@ -45,7 +45,7 @@ const HomeScreen = () => {
             <li>Recevoir des recommandations personnalisées.</li>
             <li>Participer aux discussions et échanger avec d&apos;autres fans de mangas.</li>
         </ul>
-        <button className="btn mb-3"><a href="/login" className="text-decoration-none">Inscrivez-vous dès maintenant</a></button>
+        <button className="btn mb-3"><a href="profil/login" className="text-decoration-none fw-semibold">INSCRIVEZ VOUS DÈS MAINTENANT !</a></button>
           </Col>
         </Row>
       </Container>

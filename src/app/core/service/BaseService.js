@@ -82,7 +82,7 @@ class BaseService {
         throw new Error(`API Error: ${jsonResponse.message || "Unknown error"}`);
       }
     } catch (error) {
-      throw new Error("Response is not in JSON format");
+      throw new Error("Response is not in JSON format coucou");
     }
   }
 
