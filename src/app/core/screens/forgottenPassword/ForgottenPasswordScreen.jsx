@@ -6,7 +6,7 @@ import ModalNotification from "../../../shared/components/Modal/ModalNotificatio
 import { useState } from "react";
 
 const ForgottenPasswordScreen = () => {
-  const { setTitle } = useApp();
+  const { setTitle, forgottenPassword } = useApp();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -17,10 +17,6 @@ const ForgottenPasswordScreen = () => {
   const [modalMessage, setModalMessage] = useState("");
   const [isError, setIsError] = useState(false);
 
-  const { forgottenPassword } = useApp();
-  console.log(formData);
-  
-
   setTitle("OUBLIE D'EMAIL");
 
   const handleChange = (e) => {
@@ -30,7 +26,7 @@ const ForgottenPasswordScreen = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await forgottenPassword(formData);
+      forgottenPassword({ email: formData.email });
       setModalMessage("E-mail envoyé !");
       setIsError(false);
     } catch (err) {

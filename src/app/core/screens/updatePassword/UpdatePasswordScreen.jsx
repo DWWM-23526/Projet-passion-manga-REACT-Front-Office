@@ -41,7 +41,7 @@ const UpdatePasswordScreen = () => {
 
     try {
       delete formData.password2;
-      await updatePassword({ password: formData.password });
+      updatePassword({ password: formData.password });
       setModalMessage("Mot de passe mis à jour avec succès !");
       setIsError(false);
     } catch (error) {
