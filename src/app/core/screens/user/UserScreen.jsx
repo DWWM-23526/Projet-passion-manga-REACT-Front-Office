@@ -5,9 +5,9 @@ import { useRef, useState } from "react";
 import BaseService from "../../service/BaseService";
 import ModalNotification from "../../../shared/components/Modal/ModalNotification";
 import { useNavigate } from "react-router-dom";
-import { handlePasswordBlur } from "../utils/handlePasswordBlur";
-import { validatePasswords } from "../utils/validatePassword";
-import { handleEmailResponse } from "../utils/handleEmailResponse";
+import { handlePasswordBlur } from "../../utils/handlePasswordBlur";
+import { validatePasswords } from "../../utils/validatePassword";
+import { handleEmailResponse } from "../../utils/handleEmailResponse";
 
 const UserScreen = () => {
   const { user, logout, setTitle, checkUser, isAuthenticated } = useApp();

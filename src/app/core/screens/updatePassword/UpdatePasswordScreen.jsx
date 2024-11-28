@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { validatePasswords } from "../utils/validatePassword";
-import { handlePasswordBlur } from "../utils/handlePasswordBlur";
+import { validatePasswords } from "../../utils/validatePassword";
+import { handlePasswordBlur } from "../../utils/handlePasswordBlur";
 import { useApp } from "../../hooks/useApp";
 import ModalNotification from "../../../shared/components/Modal/ModalNotification";
 import { useNavigate, useParams } from "react-router-dom";
